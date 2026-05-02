@@ -1,0 +1,49 @@
+### Autenticar usuário - Sucesso
+POST https://localhost:7165/api/Login/Autenticar
+Content-Type: application/json
+
+{
+  "email": "usuario@blueclean.com",
+  "senha": "senha12345678"
+}
+
+###
+
+### Autenticar usuário - Erro (senha curta)
+POST https://localhost:7165/api/Login/Autenticar
+Content-Type: application/json
+
+{
+  "email": "usuario@blueclean.com",
+  "senha": "123"
+}
+
+###
+
+### Autenticar usuário - Erro (email vazio)
+POST https://localhost:7165/api/Login/Autenticar
+Content-Type: application/json
+
+{
+  "email": "",
+  "senha": "senha12345678"
+}
+
+###
+
+### Obter usuário logado - COM token
+GET https://localhost:7165/api/Usuario/ObterUsuarioLogado
+Authorization: Bearer SEU_TOKEN_AQUI
+
+###
+
+### Obter usuário logado - SEM token (deve retornar 401 com mensagem)
+GET https://localhost:7165/api/Usuario/ObterUsuarioLogado
+
+###
+
+### Obter usuário logado - Token INVÁLIDO (deve retornar 401 com mensagem)
+GET https://localhost:7165/api/Usuario/ObterUsuarioLogado
+Authorization: Bearer tokenInvalidoParaTeste123456789
+
+###
