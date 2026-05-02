@@ -1,0 +1,6 @@
+@BlueCleanApi_HostAddress = http://localhost:5191
+
+GET {{BlueCleanApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
