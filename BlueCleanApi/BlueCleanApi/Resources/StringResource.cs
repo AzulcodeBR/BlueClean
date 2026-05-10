@@ -23,8 +23,8 @@ public class StringResources
     public const string UsuarioNaoEstaAtivo = "O Usuário não está ativo, contate o administrador do sistema.";
 
     // Validações de Login
-    public const string EmailObrigatorio = "E-mail é obrigatório.";
-    public const string SenhaObrigatoria = "Senha é obrigatória.";
+    public const string EmailObrigatorio = "O E-mail ou a Senha é ínválido!";
+    public const string SenhaObrigatoria = "O E-mail ou a Senha é ínválido!";
     public const string SenhaDeveTerMinimoCaracteres = "A senha deve possuir no mínimo 10 caracteres.";
     public const string UsuarioNaoAutenticado = "Usuário não autenticado.";
     public const string EmailUsuarioNaoEncontradoToken = "E-mail do usuário não encontrado no token.";

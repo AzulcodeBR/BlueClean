@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BlueCleanApi.Models.BlueCleanDb;
+
+public partial class Usuario
+{
+    public int UsuarioGerencialId { get; set; }
+
+    public int? LavanderiaId { get; set; }
+
+    public string Nome { get; set; } = null!;
+
+    public string Cpf { get; set; } = null!;
+
+    public string Email { get; set; } = null!;
+
+    public string? Telefone { get; set; }
+
+    public string Senha { get; set; } = null!;
+
+    public int PerfilUsuarioId { get; set; }
+
+    public int StatusUsuarioGerencialId { get; set; }
+
+    public string? Observacao { get; set; }
+
+    public DateTime DataCadastro { get; set; }
+
+    public DateTime? DataAtualizacao { get; set; }
+
+    public virtual ICollection<Auditorium> Auditoria { get; set; } = new List<Auditorium>();
+
+    public virtual Lavanderium? Lavanderia { get; set; }
+
+    public virtual ICollection<Notificacao> Notificacaos { get; set; } = new List<Notificacao>();
+
+    public virtual PerfilUsuario PerfilUsuario { get; set; } = null!;
+
+    public virtual StatusUsuarioGerencial StatusUsuarioGerencial { get; set; } = null!;
+
+    public virtual ICollection<UsuarioHistorico> UsuarioHistoricos { get; set; } = new List<UsuarioHistorico>();
+}

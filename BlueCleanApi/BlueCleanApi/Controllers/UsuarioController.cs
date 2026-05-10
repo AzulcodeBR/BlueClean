@@ -27,18 +27,10 @@ namespace BlueCleanApi.Controllers
         /// <returns>Informações do usuário autenticado</returns>
         /// <response code="200">Dados do usuário retornados com sucesso</response>
         /// <response code="401">Token inválido, ausente ou usuário não autenticado</response>
-        /// <remarks>       
-        /// ⚠️ **Este endpoint requer autenticação via Bearer Token.**
+        /// <remarks>
+        /// Este endpoint requer autenticação via Bearer Token.
         /// 
-        /// ### Como autenticar:
-        /// 
-        /// 1. Execute o endpoint POST /api/Login/Autenticar para obter o token
-        /// 2. Copie o valor do campo "token" da resposta
-        /// 3. No Scalar, clique no botão de autenticação (cadeado) no topo da página
-        /// 4. Cole o token no campo "Token" e salve
-        /// 5. Agora você pode executar este endpoint
-        /// 
-        /// **Ou adicione manualmente o header:**
+        /// Exemplo de uso:
         /// 
         ///     GET /api/Usuario/ObterUsuarioLogado
         ///     Authorization: Bearer {seu_token_jwt}
