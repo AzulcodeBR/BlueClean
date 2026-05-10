@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
 
-public partial class Auditorium
+public partial class Auditoria
 {
     public int AuditoriaId { get; set; }
 

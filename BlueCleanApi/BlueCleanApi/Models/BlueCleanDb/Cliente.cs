@@ -25,7 +25,7 @@ public partial class Cliente
 
     public string? Observacao { get; set; }
 
-    public virtual ICollection<Auditorium> Auditoria { get; set; } = new List<Auditorium>();
+    public virtual ICollection<Auditoria> Auditoria { get; set; } = new List<Auditoria>();
 
     public virtual ICollection<ClienteHistorico> ClienteHistoricos { get; set; } = new List<ClienteHistorico>();
 

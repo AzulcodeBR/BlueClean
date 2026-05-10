@@ -15,7 +15,7 @@ public partial class LavanderiaContext : DbContext
     {
     }
 
-    public virtual DbSet<Auditorium> Auditoria { get; set; }
+    public virtual DbSet<Auditoria> Auditoria { get; set; }
 
     public virtual DbSet<Ciclo> Ciclo { get; set; }
 
@@ -90,7 +90,7 @@ public partial class LavanderiaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Auditorium>(entity =>
+        modelBuilder.Entity<Auditoria>(entity =>
         {
             entity.HasKey(e => e.AuditoriaId).HasName("PK__Auditori__095694C3332C128E");
 
@@ -350,8 +350,11 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(150)
                 .IsUnicode(false);
-            entity.Property(e => e.Nome)
-                .HasMaxLength(150)
+            entity.Property(e => e.NomeFantasia)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.RazaoSocial)
+                .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Telefone)
                 .HasMaxLength(11)

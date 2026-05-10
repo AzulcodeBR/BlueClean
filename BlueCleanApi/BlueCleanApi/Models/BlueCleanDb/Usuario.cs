@@ -27,7 +27,7 @@ public partial class Usuario
 
     public DateTime DataAtualizacao { get; set; }
 
-    public virtual ICollection<Auditorium> Auditoria { get; set; } = new List<Auditorium>();
+    public virtual ICollection<Auditoria> Auditoria { get; set; } = new List<Auditoria>();
 
     public virtual ICollection<Notificacao> Notificacaos { get; set; } = new List<Notificacao>();
 
