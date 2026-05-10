@@ -23,5 +23,5 @@ public partial class Preco
 
     public virtual Ciclo Ciclo { get; set; } = null!;
 
-    public virtual Lavanderium Lavanderia { get; set; } = null!;
+    public virtual Lavanderia Lavanderia { get; set; } = null!;
 }

@@ -27,7 +27,7 @@ public partial class Ciclo
 
     public DateTime? DataAtualizacao { get; set; }
 
-    public virtual Lavanderium Lavanderia { get; set; } = null!;
+    public virtual Lavanderia Lavanderia { get; set; } = null!;
 
     public virtual ICollection<MaquinaAvaliacaoUso> MaquinaAvaliacaoUsos { get; set; } = new List<MaquinaAvaliacaoUso>();
 

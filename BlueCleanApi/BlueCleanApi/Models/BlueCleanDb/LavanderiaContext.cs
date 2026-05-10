@@ -23,13 +23,15 @@ public partial class LavanderiaContext : DbContext
 
     public virtual DbSet<ClienteHistorico> ClienteHistoricos { get; set; }
 
+    public virtual DbSet<Estado> Estados { get; set; }
+
     public virtual DbSet<GatewayLocal> GatewayLocals { get; set; }
 
     public virtual DbSet<IpBloqueio> IpBloqueios { get; set; }
 
     public virtual DbSet<LavanderiaEndereco> LavanderiaEnderecos { get; set; }
 
-    public virtual DbSet<Lavanderium> Lavanderia { get; set; }
+    public virtual DbSet<Lavanderia> Lavanderia { get; set; }
 
     public virtual DbSet<Manutencao> Manutencaos { get; set; }
 
@@ -44,6 +46,8 @@ public partial class LavanderiaContext : DbContext
     public virtual DbSet<MaquinaUso> MaquinaUsos { get; set; }
 
     public virtual DbSet<MetodoPagamento> MetodoPagamentos { get; set; }
+
+    public virtual DbSet<Municipio> Municipios { get; set; }
 
     public virtual DbSet<Notificacao> Notificacaos { get; set; }
 
@@ -77,8 +81,11 @@ public partial class LavanderiaContext : DbContext
 
     public virtual DbSet<UsuarioHistorico> UsuarioHistoricos { get; set; }
 
+    public virtual DbSet<UsuarioLavanderia> UsuarioLavanderia { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        // A connection string é configurada via Program.cs usando DI
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -215,6 +222,18 @@ public partial class LavanderiaContext : DbContext
                 .HasConstraintName("FK_ClienteHistoricoLogin_Cliente");
         });
 
+        modelBuilder.Entity<Estado>(entity =>
+        {
+            entity.ToTable("Estado");
+
+            entity.Property(e => e.Nome)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Sigla)
+                .HasMaxLength(2)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<GatewayLocal>(entity =>
         {
             entity.HasKey(e => e.GatewayLocalId).HasName("PK__GatewayL__40280F5C1A680774");
@@ -302,32 +321,23 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.Cep)
                 .HasMaxLength(8)
                 .IsUnicode(false);
-            entity.Property(e => e.Cidade)
-                .HasMaxLength(100)
-                .IsUnicode(false);
             entity.Property(e => e.Complemento)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.Latitude).HasColumnType("decimal(10, 7)");
             entity.Property(e => e.Logradouro)
                 .HasMaxLength(150)
                 .IsUnicode(false);
-            entity.Property(e => e.Longitude).HasColumnType("decimal(10, 7)");
             entity.Property(e => e.Numero)
                 .HasMaxLength(20)
                 .IsUnicode(false);
-            entity.Property(e => e.Uf)
-                .HasMaxLength(2)
-                .IsUnicode(false)
-                .IsFixedLength();
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.LavanderiaEnderecos)
-                .HasForeignKey(d => d.LavanderiaId)
+            entity.HasOne(d => d.Municipio).WithMany(p => p.LavanderiaEnderecos)
+                .HasForeignKey(d => d.MunicipioId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_LavanderiaEndereco_Lavanderia");
         });
 
-        modelBuilder.Entity<Lavanderium>(entity =>
+        modelBuilder.Entity<Lavanderia>(entity =>
         {
             entity.HasKey(e => e.LavanderiaId).HasName("PK__Lavander__C4446E664208718C");
 
@@ -344,6 +354,9 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(150)
                 .IsUnicode(false);
             entity.Property(e => e.Telefone)
+                .HasMaxLength(11)
+                .IsUnicode(false);
+            entity.Property(e => e.WhatsApp)
                 .HasMaxLength(11)
                 .IsUnicode(false);
         });
@@ -599,6 +612,20 @@ public partial class LavanderiaContext : DbContext
                 .IsUnicode(false);
         });
 
+        modelBuilder.Entity<Municipio>(entity =>
+        {
+            entity.ToTable("Municipio");
+
+            entity.Property(e => e.Nome)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Estado).WithMany(p => p.Municipios)
+                .HasForeignKey(d => d.EstadoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Municipio_Estado");
+        });
+
         modelBuilder.Entity<Notificacao>(entity =>
         {
             entity.HasKey(e => e.NotificacaoId).HasName("PK__Notifica__FB9B787CBB2D05C2");
@@ -846,7 +873,7 @@ public partial class LavanderiaContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.HasKey(e => e.UsuarioGerencialId).HasName("PK__UsuarioG__59D1BFC9394F923F");
+            entity.HasKey(e => e.UsuarioId).HasName("PK__UsuarioG__59D1BFC9394F923F");
 
             entity.ToTable("Usuario");
 
@@ -860,7 +887,7 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.DataAtualizacao).HasColumnType("datetime");
             entity.Property(e => e.DataCadastro).HasColumnType("datetime");
             entity.Property(e => e.Email)
-                .HasMaxLength(150)
+                .HasMaxLength(255)
                 .IsUnicode(false);
             entity.Property(e => e.Nome)
                 .HasMaxLength(150)
@@ -872,10 +899,6 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.Telefone)
                 .HasMaxLength(11)
                 .IsUnicode(false);
-
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Usuarios)
-                .HasForeignKey(d => d.LavanderiaId)
-                .HasConstraintName("FK_UsuarioGerencial_Lavanderia");
 
             entity.HasOne(d => d.PerfilUsuario).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.PerfilUsuarioId)
@@ -919,6 +942,21 @@ public partial class LavanderiaContext : DbContext
                 .HasForeignKey(d => d.UsuarioGerencialId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsuarioGerencialHistoricoLogin_UsuarioGerencial");
+        });
+
+        modelBuilder.Entity<UsuarioLavanderia>(entity =>
+        {
+            entity.HasKey(e => e.UsuarioLavanderiaId);
+
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.UsuarioLavanderia)
+                .HasForeignKey(d => d.LavanderiaId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsuarioLavanderia_Lavanderia");
+
+            entity.HasOne(d => d.Usuario).WithMany(p => p.UsuarioLavanderia)
+                .HasForeignKey(d => d.UsuarioId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsuarioLavanderia_Usuario");
         });
 
         OnModelCreatingPartial(modelBuilder);

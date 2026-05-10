@@ -35,7 +35,7 @@ public partial class Maquina
 
     public virtual GatewayLocal? GatewayLocal { get; set; }
 
-    public virtual Lavanderium Lavanderia { get; set; } = null!;
+    public virtual Lavanderia Lavanderia { get; set; } = null!;
 
     public virtual ICollection<Manutencao> Manutencaos { get; set; } = new List<Manutencao>();
 

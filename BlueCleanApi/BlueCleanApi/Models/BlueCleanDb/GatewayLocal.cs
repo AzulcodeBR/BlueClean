@@ -41,7 +41,7 @@ public partial class GatewayLocal
 
     public DateTime? DataAtualizacao { get; set; }
 
-    public virtual Lavanderium Lavanderia { get; set; } = null!;
+    public virtual Lavanderia Lavanderia { get; set; } = null!;
 
     public virtual ICollection<Maquina> Maquinas { get; set; } = new List<Maquina>();
 

@@ -5,9 +5,7 @@ namespace BlueCleanApi.Models.BlueCleanDb;
 
 public partial class Usuario
 {
-    public int UsuarioGerencialId { get; set; }
-
-    public int? LavanderiaId { get; set; }
+    public int UsuarioId { get; set; }
 
     public string Nome { get; set; } = null!;
 
@@ -15,7 +13,7 @@ public partial class Usuario
 
     public string Email { get; set; } = null!;
 
-    public string? Telefone { get; set; }
+    public string Telefone { get; set; } = null!;
 
     public string Senha { get; set; } = null!;
 
@@ -27,11 +25,9 @@ public partial class Usuario
 
     public DateTime DataCadastro { get; set; }
 
-    public DateTime? DataAtualizacao { get; set; }
+    public DateTime DataAtualizacao { get; set; }
 
     public virtual ICollection<Auditorium> Auditoria { get; set; } = new List<Auditorium>();
-
-    public virtual Lavanderium? Lavanderia { get; set; }
 
     public virtual ICollection<Notificacao> Notificacaos { get; set; } = new List<Notificacao>();
 
@@ -40,4 +36,6 @@ public partial class Usuario
     public virtual StatusUsuarioGerencial StatusUsuarioGerencial { get; set; } = null!;
 
     public virtual ICollection<UsuarioHistorico> UsuarioHistoricos { get; set; } = new List<UsuarioHistorico>();
+
+    public virtual ICollection<UsuarioLavanderia> UsuarioLavanderia { get; set; } = new List<UsuarioLavanderia>();
 }

@@ -31,7 +31,7 @@ public partial class Transacao
 
     public virtual Cliente Cliente { get; set; } = null!;
 
-    public virtual Lavanderium Lavanderia { get; set; } = null!;
+    public virtual Lavanderia Lavanderia { get; set; } = null!;
 
     public virtual Maquina Maquina { get; set; } = null!;
 
