@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,5 +9,6 @@ public partial class StatusCliente
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
+    public virtual ICollection<Cliente> Cliente { get; set; } = new List<Cliente>();
 }
+

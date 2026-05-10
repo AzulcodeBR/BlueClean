@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,5 +9,6 @@ public partial class StatusTransacao
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<Transacao> Transacaos { get; set; } = new List<Transacao>();
+    public virtual ICollection<Transacao> Transacao { get; set; } = new List<Transacao>();
 }
+

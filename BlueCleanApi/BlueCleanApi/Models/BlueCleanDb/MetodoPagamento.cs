@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,5 +9,6 @@ public partial class MetodoPagamento
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
+    public virtual ICollection<Pagamento> Pagamento { get; set; } = new List<Pagamento>();
 }
+

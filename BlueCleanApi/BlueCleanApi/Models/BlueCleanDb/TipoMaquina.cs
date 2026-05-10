@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,7 +9,8 @@ public partial class TipoMaquina
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<Ciclo> Ciclos { get; set; } = new List<Ciclo>();
+    public virtual ICollection<Ciclo> Ciclo { get; set; } = new List<Ciclo>();
 
-    public virtual ICollection<Maquina> Maquinas { get; set; } = new List<Maquina>();
+    public virtual ICollection<Maquina> Maquina { get; set; } = new List<Maquina>();
 }
+

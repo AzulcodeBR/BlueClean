@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -43,7 +43,8 @@ public partial class GatewayLocal
 
     public virtual Lavanderia Lavanderia { get; set; } = null!;
 
-    public virtual ICollection<Maquina> Maquinas { get; set; } = new List<Maquina>();
+    public virtual ICollection<Maquina> Maquina { get; set; } = new List<Maquina>();
 
     public virtual StatusGateway StatusGateway { get; set; } = null!;
 }
+

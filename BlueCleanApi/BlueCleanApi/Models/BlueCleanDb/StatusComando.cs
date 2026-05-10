@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,5 +9,6 @@ public partial class StatusComando
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<MaquinaComando> MaquinaComandos { get; set; } = new List<MaquinaComando>();
+    public virtual ICollection<MaquinaComando> MaquinaComando { get; set; } = new List<MaquinaComando>();
 }
+

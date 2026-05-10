@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -9,5 +9,6 @@ public partial class StatusGateway
 
     public string Descricao { get; set; } = null!;
 
-    public virtual ICollection<GatewayLocal> GatewayLocals { get; set; } = new List<GatewayLocal>();
+    public virtual ICollection<GatewayLocal> GatewayLocal { get; set; } = new List<GatewayLocal>();
 }
+

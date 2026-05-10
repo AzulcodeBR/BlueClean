@@ -141,12 +141,12 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Ciclos)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Ciclo)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ciclo_Lavanderia");
 
-            entity.HasOne(d => d.TipoMaquina).WithMany(p => p.Ciclos)
+            entity.HasOne(d => d.TipoMaquina).WithMany(p => p.Ciclo)
                 .HasForeignKey(d => d.TipoMaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ciclo_TipoMaquina");
@@ -183,7 +183,7 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(11)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.StatusCliente).WithMany(p => p.Clientes)
+            entity.HasOne(d => d.StatusCliente).WithMany(p => p.Cliente)
                 .HasForeignKey(d => d.StatusClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Cliente_StatusCliente");
@@ -216,7 +216,7 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(500)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.ClienteHistoricos)
+            entity.HasOne(d => d.Cliente).WithMany(p => p.ClienteHistorico)
                 .HasForeignKey(d => d.ClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ClienteHistoricoLogin_Cliente");
@@ -276,12 +276,12 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.GatewayLocals)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.GatewayLocal)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_GatewayLocal_Lavanderia");
 
-            entity.HasOne(d => d.StatusGateway).WithMany(p => p.GatewayLocals)
+            entity.HasOne(d => d.StatusGateway).WithMany(p => p.GatewayLocal)
                 .HasForeignKey(d => d.StatusGatewayId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_GatewayLocal_StatusGateway");
@@ -331,7 +331,7 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Municipio).WithMany(p => p.LavanderiaEnderecos)
+            entity.HasOne(d => d.Municipio).WithMany(p => p.LavanderiaEndereco)
                 .HasForeignKey(d => d.MunicipioId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_LavanderiaEndereco_Lavanderia");
@@ -384,12 +384,12 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.Manutencaos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.Manutencao)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Manutencao_Maquina");
 
-            entity.HasOne(d => d.StatusManutencao).WithMany(p => p.Manutencaos)
+            entity.HasOne(d => d.StatusManutencao).WithMany(p => p.Manutencao)
                 .HasForeignKey(d => d.StatusManutencaoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Manutencao_StatusManutencao");
@@ -424,21 +424,21 @@ public partial class LavanderiaContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.UltimaComunicacao).HasColumnType("datetime");
 
-            entity.HasOne(d => d.GatewayLocal).WithMany(p => p.Maquinas)
+            entity.HasOne(d => d.GatewayLocal).WithMany(p => p.Maquina)
                 .HasForeignKey(d => d.GatewayLocalId)
                 .HasConstraintName("FK_Maquina_GatewayLocal");
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Maquinas)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Maquina)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Maquina_Lavanderia");
 
-            entity.HasOne(d => d.StatusMaquina).WithMany(p => p.Maquinas)
+            entity.HasOne(d => d.StatusMaquina).WithMany(p => p.Maquina)
                 .HasForeignKey(d => d.StatusMaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Maquina_StatusMaquina");
 
-            entity.HasOne(d => d.TipoMaquina).WithMany(p => p.Maquinas)
+            entity.HasOne(d => d.TipoMaquina).WithMany(p => p.Maquina)
                 .HasForeignKey(d => d.TipoMaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Maquina_TipoMaquina");
@@ -465,17 +465,17 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Ciclo).WithMany(p => p.MaquinaAvaliacaoUsos)
+            entity.HasOne(d => d.Ciclo).WithMany(p => p.MaquinaAvaliacaoUso)
                 .HasForeignKey(d => d.CicloId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_AvaliacaoUsoMaquina_Ciclo");
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.MaquinaAvaliacaoUsos)
+            entity.HasOne(d => d.Cliente).WithMany(p => p.MaquinaAvaliacaoUso)
                 .HasForeignKey(d => d.ClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_AvaliacaoUsoMaquina_Cliente");
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaAvaliacaoUsos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaAvaliacaoUso)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_AvaliacaoUsoMaquina_Maquina");
@@ -504,17 +504,17 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaComandos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaComando)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ComandoMaquina_Maquina");
 
-            entity.HasOne(d => d.StatusComando).WithMany(p => p.MaquinaComandos)
+            entity.HasOne(d => d.StatusComando).WithMany(p => p.MaquinaComando)
                 .HasForeignKey(d => d.StatusComandoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ComandoMaquina_StatusComando");
 
-            entity.HasOne(d => d.Transacao).WithMany(p => p.MaquinaComandos)
+            entity.HasOne(d => d.Transacao).WithMany(p => p.MaquinaComando)
                 .HasForeignKey(d => d.TransacaoId)
                 .HasConstraintName("FK_ComandoMaquina_Transacao");
         });
@@ -540,16 +540,16 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaEventos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaEvento)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_EventoMaquina_Maquina");
 
-            entity.HasOne(d => d.StatusMaquina).WithMany(p => p.MaquinaEventos)
+            entity.HasOne(d => d.StatusMaquina).WithMany(p => p.MaquinaEvento)
                 .HasForeignKey(d => d.StatusMaquinaId)
                 .HasConstraintName("FK_EventoMaquina_StatusMaquina");
 
-            entity.HasOne(d => d.Transacao).WithMany(p => p.MaquinaEventos)
+            entity.HasOne(d => d.Transacao).WithMany(p => p.MaquinaEvento)
                 .HasForeignKey(d => d.TransacaoId)
                 .HasConstraintName("FK_EventoMaquina_Transacao");
         });
@@ -578,22 +578,22 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.ValorCobrado).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.ValorPago).HasColumnType("decimal(10, 2)");
 
-            entity.HasOne(d => d.Ciclo).WithMany(p => p.MaquinaUsos)
+            entity.HasOne(d => d.Ciclo).WithMany(p => p.MaquinaUso)
                 .HasForeignKey(d => d.CicloId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsoMaquina_Ciclo");
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.MaquinaUsos)
+            entity.HasOne(d => d.Cliente).WithMany(p => p.MaquinaUso)
                 .HasForeignKey(d => d.ClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsoMaquina_Cliente");
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.MaquinaUsos)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.MaquinaUso)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsoMaquina_Lavanderia");
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaUsos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.MaquinaUso)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsoMaquina_Maquina");
@@ -623,7 +623,7 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Estado).WithMany(p => p.Municipios)
+            entity.HasOne(d => d.Estado).WithMany(p => p.Municipio)
                 .HasForeignKey(d => d.EstadoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Municipio_Estado");
@@ -648,11 +648,11 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(150)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.Notificacaos)
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Notificacao)
                 .HasForeignKey(d => d.ClienteId)
                 .HasConstraintName("FK_Notificacao_Cliente");
 
-            entity.HasOne(d => d.UsuarioGerencial).WithMany(p => p.Notificacaos)
+            entity.HasOne(d => d.UsuarioGerencial).WithMany(p => p.Notificacao)
                 .HasForeignKey(d => d.UsuarioGerencialId)
                 .HasConstraintName("FK_Notificacao_UsuarioGerencial");
         });
@@ -679,17 +679,17 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.QrCodeBase64).IsUnicode(false);
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
 
-            entity.HasOne(d => d.MetodoPagamento).WithMany(p => p.Pagamentos)
+            entity.HasOne(d => d.MetodoPagamento).WithMany(p => p.Pagamento)
                 .HasForeignKey(d => d.MetodoPagamentoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pagamento_MetodoPagamento");
 
-            entity.HasOne(d => d.StatusPagamento).WithMany(p => p.Pagamentos)
+            entity.HasOne(d => d.StatusPagamento).WithMany(p => p.Pagamento)
                 .HasForeignKey(d => d.StatusPagamentoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pagamento_StatusPagamento");
 
-            entity.HasOne(d => d.Transacao).WithMany(p => p.Pagamentos)
+            entity.HasOne(d => d.Transacao).WithMany(p => p.Pagamento)
                 .HasForeignKey(d => d.TransacaoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Pagamento_Transacao");
@@ -718,12 +718,12 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.InicioVigencia).HasColumnType("datetime");
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
 
-            entity.HasOne(d => d.Ciclo).WithMany(p => p.Precos)
+            entity.HasOne(d => d.Ciclo).WithMany(p => p.Preco)
                 .HasForeignKey(d => d.CicloId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Preco_Ciclo");
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Precos)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Preco)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Preco_Lavanderia");
@@ -848,27 +848,27 @@ public partial class LavanderiaContext : DbContext
             entity.Property(e => e.DataInicio).HasColumnType("datetime");
             entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
 
-            entity.HasOne(d => d.Ciclo).WithMany(p => p.Transacaos)
+            entity.HasOne(d => d.Ciclo).WithMany(p => p.Transacao)
                 .HasForeignKey(d => d.CicloId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transacao_Ciclo");
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.Transacaos)
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Transacao)
                 .HasForeignKey(d => d.ClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transacao_Cliente");
 
-            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Transacaos)
+            entity.HasOne(d => d.Lavanderia).WithMany(p => p.Transacao)
                 .HasForeignKey(d => d.LavanderiaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transacao_Lavanderia");
 
-            entity.HasOne(d => d.Maquina).WithMany(p => p.Transacaos)
+            entity.HasOne(d => d.Maquina).WithMany(p => p.Transacao)
                 .HasForeignKey(d => d.MaquinaId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transacao_Maquina");
 
-            entity.HasOne(d => d.StatusTransacao).WithMany(p => p.Transacaos)
+            entity.HasOne(d => d.StatusTransacao).WithMany(p => p.Transacao)
                 .HasForeignKey(d => d.StatusTransacaoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transacao_StatusTransacao");
@@ -903,12 +903,12 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(11)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.PerfilUsuario).WithMany(p => p.Usuarios)
+            entity.HasOne(d => d.PerfilUsuario).WithMany(p => p.Usuario)
                 .HasForeignKey(d => d.PerfilUsuarioId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsuarioGerencial_PerfilUsuario");
 
-            entity.HasOne(d => d.StatusUsuarioGerencial).WithMany(p => p.Usuarios)
+            entity.HasOne(d => d.StatusUsuarioGerencial).WithMany(p => p.Usuario)
                 .HasForeignKey(d => d.StatusUsuarioGerencialId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsuarioGerencial_StatusUsuarioGerencial");
@@ -941,7 +941,7 @@ public partial class LavanderiaContext : DbContext
                 .HasMaxLength(500)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.UsuarioGerencial).WithMany(p => p.UsuarioHistoricos)
+            entity.HasOne(d => d.UsuarioGerencial).WithMany(p => p.UsuarioHistorico)
                 .HasForeignKey(d => d.UsuarioGerencialId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UsuarioGerencialHistoricoLogin_UsuarioGerencial");

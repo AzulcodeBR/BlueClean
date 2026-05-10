@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -27,15 +27,16 @@ public partial class Cliente
 
     public virtual ICollection<Auditoria> Auditoria { get; set; } = new List<Auditoria>();
 
-    public virtual ICollection<ClienteHistorico> ClienteHistoricos { get; set; } = new List<ClienteHistorico>();
+    public virtual ICollection<ClienteHistorico> ClienteHistorico { get; set; } = new List<ClienteHistorico>();
 
-    public virtual ICollection<MaquinaAvaliacaoUso> MaquinaAvaliacaoUsos { get; set; } = new List<MaquinaAvaliacaoUso>();
+    public virtual ICollection<MaquinaAvaliacaoUso> MaquinaAvaliacaoUso { get; set; } = new List<MaquinaAvaliacaoUso>();
 
-    public virtual ICollection<MaquinaUso> MaquinaUsos { get; set; } = new List<MaquinaUso>();
+    public virtual ICollection<MaquinaUso> MaquinaUso { get; set; } = new List<MaquinaUso>();
 
-    public virtual ICollection<Notificacao> Notificacaos { get; set; } = new List<Notificacao>();
+    public virtual ICollection<Notificacao> Notificacao { get; set; } = new List<Notificacao>();
 
     public virtual StatusCliente StatusCliente { get; set; } = null!;
 
-    public virtual ICollection<Transacao> Transacaos { get; set; } = new List<Transacao>();
+    public virtual ICollection<Transacao> Transacao { get; set; } = new List<Transacao>();
 }
+

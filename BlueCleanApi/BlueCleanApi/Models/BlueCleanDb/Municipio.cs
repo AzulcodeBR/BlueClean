@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BlueCleanApi.Models.BlueCleanDb;
@@ -15,5 +15,6 @@ public partial class Municipio
 
     public virtual Estado Estado { get; set; } = null!;
 
-    public virtual ICollection<LavanderiaEndereco> LavanderiaEnderecos { get; set; } = new List<LavanderiaEndereco>();
+    public virtual ICollection<LavanderiaEndereco> LavanderiaEndereco { get; set; } = new List<LavanderiaEndereco>();
 }
+
