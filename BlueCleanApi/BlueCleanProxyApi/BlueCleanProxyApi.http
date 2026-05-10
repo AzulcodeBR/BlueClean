@@ -1,0 +1,6 @@
+@BlueCleanProxyApi_HostAddress = http://localhost:5176
+
+GET {{BlueCleanProxyApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
