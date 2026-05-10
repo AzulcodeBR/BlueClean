@@ -33,4 +33,11 @@ public class StringResources
     public const string TokenNaoInformado = "Token de autenticação não informado.";
     public const string TokenInvalido = "Token de autenticação inválido.";
     public const string TokenExpirado = "Token de autenticação expirado.";
+
+    // Validações de CEP
+    public const string CepObrigatorio = "CEP é obrigatório";
+    public const string CepDeveConterOitoDigitos = "CEP deve conter 8 dígitos";
+    public const string CepDeveConterApenasNumeros = "CEP deve conter apenas números";
+    public const string ErroConsultarCepApi = "Erro ao consultar CEP na API ViaCEP";
+    public const string CepNaoEncontrado = "CEP não encontrado";
 }
