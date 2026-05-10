@@ -17,69 +17,69 @@ public partial class LavanderiaContext : DbContext
 
     public virtual DbSet<Auditorium> Auditoria { get; set; }
 
-    public virtual DbSet<Ciclo> Ciclos { get; set; }
+    public virtual DbSet<Ciclo> Ciclo { get; set; }
 
-    public virtual DbSet<Cliente> Clientes { get; set; }
+    public virtual DbSet<Cliente> Cliente { get; set; }
 
-    public virtual DbSet<ClienteHistorico> ClienteHistoricos { get; set; }
+    public virtual DbSet<ClienteHistorico> ClienteHistorico { get; set; }
 
-    public virtual DbSet<Estado> Estados { get; set; }
+    public virtual DbSet<Estado> Estado { get; set; }
 
-    public virtual DbSet<GatewayLocal> GatewayLocals { get; set; }
+    public virtual DbSet<GatewayLocal> GatewayLocal { get; set; }
 
-    public virtual DbSet<IpBloqueio> IpBloqueios { get; set; }
+    public virtual DbSet<IpBloqueio> IpBloqueio { get; set; }
 
-    public virtual DbSet<LavanderiaEndereco> LavanderiaEnderecos { get; set; }
+    public virtual DbSet<LavanderiaEndereco> LavanderiaEndereco { get; set; }
 
     public virtual DbSet<Lavanderia> Lavanderia { get; set; }
 
-    public virtual DbSet<Manutencao> Manutencaos { get; set; }
+    public virtual DbSet<Manutencao> Manutencao { get; set; }
 
-    public virtual DbSet<Maquina> Maquinas { get; set; }
+    public virtual DbSet<Maquina> Maquina { get; set; }
 
-    public virtual DbSet<MaquinaAvaliacaoUso> MaquinaAvaliacaoUsos { get; set; }
+    public virtual DbSet<MaquinaAvaliacaoUso> MaquinaAvaliacaoUso { get; set; }
 
-    public virtual DbSet<MaquinaComando> MaquinaComandos { get; set; }
+    public virtual DbSet<MaquinaComando> MaquinaComando { get; set; }
 
-    public virtual DbSet<MaquinaEvento> MaquinaEventos { get; set; }
+    public virtual DbSet<MaquinaEvento> MaquinaEvento { get; set; }
 
-    public virtual DbSet<MaquinaUso> MaquinaUsos { get; set; }
+    public virtual DbSet<MaquinaUso> MaquinaUso { get; set; }
 
-    public virtual DbSet<MetodoPagamento> MetodoPagamentos { get; set; }
+    public virtual DbSet<MetodoPagamento> MetodoPagamento { get; set; }
 
-    public virtual DbSet<Municipio> Municipios { get; set; }
+    public virtual DbSet<Municipio> Municipio { get; set; }
 
-    public virtual DbSet<Notificacao> Notificacaos { get; set; }
+    public virtual DbSet<Notificacao> Notificacao { get; set; }
 
-    public virtual DbSet<Pagamento> Pagamentos { get; set; }
+    public virtual DbSet<Pagamento> Pagamento { get; set; }
 
-    public virtual DbSet<PerfilUsuario> PerfilUsuarios { get; set; }
+    public virtual DbSet<PerfilUsuario> PerfilUsuario { get; set; }
 
-    public virtual DbSet<Preco> Precos { get; set; }
+    public virtual DbSet<Preco> Preco { get; set; }
 
-    public virtual DbSet<StatusCliente> StatusClientes { get; set; }
+    public virtual DbSet<StatusCliente> StatusCliente { get; set; }
 
-    public virtual DbSet<StatusComando> StatusComandos { get; set; }
+    public virtual DbSet<StatusComando> StatusComando { get; set; }
 
-    public virtual DbSet<StatusGateway> StatusGateways { get; set; }
+    public virtual DbSet<StatusGateway> StatusGateway { get; set; }
 
-    public virtual DbSet<StatusManutencao> StatusManutencaos { get; set; }
+    public virtual DbSet<StatusManutencao> StatusManutencao { get; set; }
 
-    public virtual DbSet<StatusMaquina> StatusMaquinas { get; set; }
+    public virtual DbSet<StatusMaquina> StatusMaquina { get; set; }
 
-    public virtual DbSet<StatusPagamento> StatusPagamentos { get; set; }
+    public virtual DbSet<StatusPagamento> StatusPagamento { get; set; }
 
-    public virtual DbSet<StatusTransacao> StatusTransacaos { get; set; }
+    public virtual DbSet<StatusTransacao> StatusTransacao { get; set; }
 
-    public virtual DbSet<StatusUsuarioGerencial> StatusUsuarioGerencials { get; set; }
+    public virtual DbSet<StatusUsuarioGerencial> StatusUsuarioGerencial { get; set; }
 
-    public virtual DbSet<TipoMaquina> TipoMaquinas { get; set; }
+    public virtual DbSet<TipoMaquina> TipoMaquina { get; set; }
 
-    public virtual DbSet<Transacao> Transacaos { get; set; }
+    public virtual DbSet<Transacao> Transacao { get; set; }
 
-    public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<Usuario> Usuario { get; set; }
 
-    public virtual DbSet<UsuarioHistorico> UsuarioHistoricos { get; set; }
+    public virtual DbSet<UsuarioHistorico> UsuarioHistorico { get; set; }
 
     public virtual DbSet<UsuarioLavanderia> UsuarioLavanderia { get; set; }
 
