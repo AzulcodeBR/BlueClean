@@ -10,11 +10,5 @@ namespace BlueCleanApi.Extensions.Dtos
         /// </summary>
         /// <example>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</example>
         public string Token { get; set; } = string.Empty;
-
-        /// <summary>
-        /// E-mail do usuário autenticado
-        /// </summary>
-        /// <example>usuario@blueclean.com</example>
-        public string Email { get; set; } = string.Empty;
     }
 }
