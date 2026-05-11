@@ -1,0 +1,9 @@
+section {
+  display: grid;
+  gap: 0.5rem;
+}
+
+h2,
+p {
+  margin: 0;
+}
