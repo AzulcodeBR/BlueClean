@@ -13,6 +13,7 @@ export class App {
   protected readonly title = computed(() => `${this.appName()} Proxy`);
   protected readonly navItems = [
     { label: 'Inicio', path: '/' },
+    { label: 'Cliente', path: '/cliente' },
     { label: 'Login', path: '/login' }
   ] as const;
 }

@@ -202,5 +202,86 @@ namespace BlueCleanApi.Utils
 
             return Regex.Replace(valor, @"[^\d]", string.Empty);
         }
+
+        /// <summary>
+        /// Valida se o nome possui mais de um nome (nome e sobrenome).
+        /// </summary>
+        public static bool ValidarNomeCompleto(string nome)
+        {
+            if (string.IsNullOrWhiteSpace(nome))
+                return false;
+
+            var partes = nome.Trim()
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            if (partes.Length < 2)
+                return false;
+
+            return partes.All(parte =>
+                parte.Length >= 2 &&
+                parte.All(c => char.IsLetter(c) || c is '-' or '\''));
+        }
+
+        /// <summary>
+        /// Valida a senha do cliente conforme regras de segurança do cadastro.
+        /// </summary>
+        public static bool ValidarSenhaCliente(string senha)
+        {
+            if (string.IsNullOrEmpty(senha) || senha.Length < 10)
+                return false;
+
+            if (!Regex.IsMatch(senha, @"[A-Za-z]"))
+                return false;
+
+            if (!Regex.IsMatch(senha, @"[A-Z]"))
+                return false;
+
+            if (!Regex.IsMatch(senha, @"[^A-Za-z0-9]"))
+                return false;
+
+            if (ContemNumerosSequenciais(senha, 4))
+                return false;
+
+            return true;
+        }
+
+        /// <summary>
+        /// Verifica se a string contém sequência numérica ascendente ou descendente.
+        /// </summary>
+        public static bool ContemNumerosSequenciais(string valor, int tamanhoMinimo = 4)
+        {
+            if (string.IsNullOrEmpty(valor) || valor.Length < tamanhoMinimo)
+                return false;
+
+            for (var i = 0; i <= valor.Length - tamanhoMinimo; i++)
+            {
+                if (!char.IsDigit(valor[i]))
+                    continue;
+
+                var ascendente = true;
+                var descendente = true;
+
+                for (var j = 1; j < tamanhoMinimo; j++)
+                {
+                    if (!char.IsDigit(valor[i + j]))
+                    {
+                        ascendente = false;
+                        descendente = false;
+                        break;
+                    }
+
+                    if (valor[i + j] - valor[i + j - 1] != 1)
+                        ascendente = false;
+
+                    if (valor[i + j - 1] - valor[i + j] != 1)
+                        descendente = false;
+                }
+
+                if (ascendente || descendente)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

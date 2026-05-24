@@ -1,0 +1,21 @@
+export const StringResources = {
+  ClienteNomeObrigatorio: 'O nome do cliente é obrigatório.',
+  ClienteNomeMaximoCaracteres: 'O nome do cliente deve possuir no máximo 150 caracteres.',
+  ClienteNomeDeveConterMaisDeUmNome: 'Informe nome e sobrenome (mais de um nome).',
+  ClienteEmailObrigatorio: 'O e-mail do cliente é obrigatório.',
+  ClienteEmailInvalido: 'O e-mail informado é inválido.',
+  ClienteEmailMaximoCaracteres: 'O e-mail do cliente deve possuir no máximo 150 caracteres.',
+  ClienteTelefoneInvalido: 'O telefone informado é inválido.',
+  ClienteTelefoneMaximoCaracteres: 'O telefone deve possuir no máximo 11 dígitos.',
+  ClienteCpfCnpjObrigatorio: 'O CPF ou CNPJ é obrigatório.',
+  ClienteCpfCnpjInvalido: 'O CPF ou CNPJ informado é inválido.',
+  ClienteObservacaoMaximoCaracteres: 'A observação deve possuir no máximo 500 caracteres.',
+  ClienteSenhaObrigatoria: 'A senha do cliente é obrigatória.',
+  SenhaDeveTerMinimoCaracteres: 'A senha deve possuir no mínimo 10 caracteres.',
+  ClienteSenhaDeveConterLetras: 'A senha deve conter letras.',
+  ClienteSenhaDeveConterLetraMaiuscula: 'A senha deve conter pelo menos uma letra maiúscula.',
+  ClienteSenhaDeveConterCaractereEspecial: 'A senha deve conter pelo menos um caractere especial.',
+  ClienteSenhaNaoPodeConterNumerosSequenciais: 'A senha não pode conter números sequenciais (ex.: 1234).',
+  ClienteErroComunicacaoBackend: 'Erro ao comunicar com a API de backend.',
+  ClienteCadastroSucesso: 'Cliente cadastrado com sucesso. Código: {0}.'
+} as const;

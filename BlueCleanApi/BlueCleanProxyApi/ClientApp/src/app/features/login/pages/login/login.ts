@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-login',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule],
-  templateUrl: './login.page.html',
-  styleUrl: './login.page.css'
+  templateUrl: './login.html',
+  styleUrl: './login.css'
 })
-export class LoginPage {
+export class LoginComponent {
   private readonly formBuilder = inject(FormBuilder);
 
   protected readonly form = this.formBuilder.nonNullable.group({
