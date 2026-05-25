@@ -13,21 +13,21 @@ public class ClienteController(
   INotificadorDominio notificadorDominio,
   IClienteService clienteService) : BaseController(notificadorDominio)
 {
-  private readonly IClienteService _clienteService = clienteService;
+    private readonly IClienteService _clienteService = clienteService;
 
-  /// <summary>
-  /// Cadastra um novo cliente.
-  /// </summary>
-  [HttpPost("Cadastrar")]
-  [ProducesResponseType(typeof(ClienteCadastroResponseDto), StatusCodes.Status200OK)]
-  [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status400BadRequest)]
-  public async Task<IActionResult> Cadastrar([FromBody] ClienteCadastroRequestDto request)
-  {
-    var retorno = await _clienteService.CadastrarAsync(request);
+    /// <summary>
+    /// Cadastra um novo cliente.
+    /// </summary>
+    [HttpPost("Cadastrar")]
+    [ProducesResponseType(typeof(ClienteCadastroResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> Cadastrar([FromBody] ClienteCadastroRequestDto request)
+    {
+        var retorno = await _clienteService.CadastrarAsync(request);
 
-    if (retorno == null || !_notificadorDominio.VerificarOperacao())
-      return BadRequestResponse();
+        if (retorno == null || !_notificadorDominio.VerificarOperacao())
+            return BadRequestResponse();
 
-    return Ok(retorno);
-  }
+        return Ok(retorno);
+    }
 }
