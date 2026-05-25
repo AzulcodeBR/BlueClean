@@ -1,4 +1,4 @@
-namespace BlueCleanProxyApi.Extensions.Dtos;
+namespace BlueCleanProxyApi.Dtos;
 
 public class ClienteCadastroResponseDto
 {

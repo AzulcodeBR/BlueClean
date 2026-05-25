@@ -16,6 +16,8 @@
   <ItemGroup>
     <Folder Include="ClientApp\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Extensions\Dtos\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 
 </Project>

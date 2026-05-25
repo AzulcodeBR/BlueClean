@@ -1,4 +1,4 @@
-namespace BlueCleanApi.Extensions.Dtos
+namespace BlueCleanApi.Domains.Dtos.Login
 {
     /// <summary>
     /// Modelo de requisição para autenticação de usuário

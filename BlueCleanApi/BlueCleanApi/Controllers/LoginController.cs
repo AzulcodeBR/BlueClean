@@ -1,6 +1,6 @@
-﻿using BlueCleanApi.Domains.Interfaces;
+﻿using BlueCleanApi.Domains.Dtos.Login;
+using BlueCleanApi.Domains.Interfaces;
 using BlueCleanApi.Extensions;
-using BlueCleanApi.Extensions.Dtos;
 using BlueCleanApi.Extensions.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

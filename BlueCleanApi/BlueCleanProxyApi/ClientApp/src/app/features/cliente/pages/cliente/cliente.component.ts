@@ -16,8 +16,8 @@ import { ClienteService } from '../../services/cliente.service';
   selector: 'app-cliente',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule],
-  templateUrl: './cliente.html',
-  styleUrl: './cliente.css'
+  templateUrl: './cliente.component.html',
+  styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent {
   private readonly formBuilder = inject(FormBuilder);

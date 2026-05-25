@@ -1,5 +1,5 @@
-﻿using BlueCleanApi.Domains.Interfaces;
-using BlueCleanApi.Extensions.Dtos;
+﻿using BlueCleanApi.Domains.Dtos.Login;
+using BlueCleanApi.Domains.Interfaces;
 using BlueCleanApi.Extensions.Interfaces;
 using BlueCleanApi.Resources;
 using Microsoft.IdentityModel.Tokens;

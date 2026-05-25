@@ -1,12 +1,15 @@
-namespace BlueCleanProxyApi.Extensions.Dtos;
+namespace BlueCleanApi.Domains.Dtos.Cliente;
 
+/// <summary>
+/// Dados para cadastro de cliente.
+/// </summary>
 public class ClienteCadastroRequestDto
 {
   public string Nome { get; set; } = string.Empty;
 
   public string Email { get; set; } = string.Empty;
 
-  public string? Telefone { get; set; }
+  public string Telefone { get; set; }
 
   public string CpfCnpj { get; set; } = string.Empty;
 

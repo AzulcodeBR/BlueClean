@@ -66,39 +66,29 @@ function validarCnpj(cnpj: string): boolean {
   return Number(cnpj[13]) === digito2;
 }
 
+function ehSequenciaNumerica(valor: string, passo: 1 | -1): boolean {
+  for (let i = 1; i < valor.length; i++) {
+    if (Number(valor[i]) - Number(valor[i - 1]) !== passo) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function contemNumerosSequenciais(valor: string, tamanhoMinimo = 4): boolean {
   if (valor.length < tamanhoMinimo) {
     return false;
   }
 
   for (let i = 0; i <= valor.length - tamanhoMinimo; i++) {
-    if (!/\d/.test(valor[i])) {
+    const trecho = valor.slice(i, i + tamanhoMinimo);
+
+    if (!/^\d+$/.test(trecho)) {
       continue;
     }
 
-    let ascendente = true;
-    let descendente = true;
-
-    for (let j = 1; j < tamanhoMinimo; j++) {
-      const atual = valor[i + j];
-      const anterior = valor[i + j - 1];
-
-      if (!/\d/.test(atual)) {
-        ascendente = false;
-        descendente = false;
-        break;
-      }
-
-      if (Number(atual) - Number(anterior) !== 1) {
-        ascendente = false;
-      }
-
-      if (Number(anterior) - Number(atual) !== 1) {
-        descendente = false;
-      }
-    }
-
-    if (ascendente || descendente) {
+    if (ehSequenciaNumerica(trecho, 1) || ehSequenciaNumerica(trecho, -1)) {
       return true;
     }
   }
@@ -155,7 +145,7 @@ export function telefoneValidator(): ValidatorFn {
     const valor = String(control.value ?? '').trim();
 
     if (!valor) {
-      return null;
+      return { required: { message: StringResources.ClienteTelefoneObrigatorio } };
     }
 
     const telefone = apenasDigitos(valor);
@@ -247,7 +237,7 @@ export function senhaClienteValidator(): ValidatorFn {
 }
 
 export function obterMensagemErro(control: AbstractControl | null): string | null {
-  if (!control || !control.errors || !(control.touched || control.dirty)) {
+  if (!control?.errors || !(control.touched || control.dirty)) {
     return null;
   }
 

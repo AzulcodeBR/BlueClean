@@ -1,6 +1,6 @@
 using BlueCleanProxyApi.Domains.Interfaces;
+using BlueCleanProxyApi.Dtos;
 using BlueCleanProxyApi.Extensions;
-using BlueCleanProxyApi.Extensions.Dtos;
 using BlueCleanProxyApi.Extensions.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

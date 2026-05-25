@@ -1,4 +1,4 @@
-﻿using BlueCleanApi.Extensions.Dtos;
+﻿using BlueCleanApi.Domains.Dtos.Login;
 
 namespace BlueCleanApi.Domains.Interfaces
 {

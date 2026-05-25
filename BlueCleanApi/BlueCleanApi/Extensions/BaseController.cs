@@ -7,28 +7,17 @@ namespace BlueCleanApi.Extensions
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class BaseController : ControllerBase
+    public class BaseController(INotificadorDominio notificadorDominio) : ControllerBase
     {
-        protected readonly INotificadorDominio _notificadorDominio;
+        protected readonly INotificadorDominio _notificadorDominio = notificadorDominio;
 
-        protected BaseController(INotificadorDominio notificadorDominio)
-        {
-            _notificadorDominio = notificadorDominio;
-        }
+        protected BadRequestObjectResult BadRequestResponse() =>
+          BadRequest(_notificadorDominio.ObterNotificacoes().Distinct());
 
-        protected BadRequestObjectResult BadRequestResponse()
-        {
-            return BadRequest(_notificadorDominio.ObterNotificacoes().Distinct());
-        }
+        protected UnauthorizedObjectResult UnauthorizedResponse() =>
+          Unauthorized(_notificadorDominio.ObterNotificacoes().Distinct());
 
-        protected UnauthorizedObjectResult UnauthorizedResponse()
-        {
-            return Unauthorized(_notificadorDominio.ObterNotificacoes().Distinct());
-        }
-
-        protected NotFoundObjectResult NotFoundRequestResponse()
-        {
-            return NotFound(StringResources.NenhumRegistroEncontrado);
-        }
+        protected NotFoundObjectResult NotFoundRequestResponse() =>
+          NotFound(StringResources.NenhumRegistroEncontrado);
     }
 }

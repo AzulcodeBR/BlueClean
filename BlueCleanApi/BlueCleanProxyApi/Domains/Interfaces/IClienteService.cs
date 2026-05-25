@@ -1,4 +1,4 @@
-using BlueCleanProxyApi.Extensions.Dtos;
+using BlueCleanProxyApi.Dtos;
 
 namespace BlueCleanProxyApi.Domains.Interfaces;
 

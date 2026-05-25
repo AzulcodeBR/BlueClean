@@ -1,6 +1,8 @@
+$space-1: 0.5rem;
+
 section {
   display: grid;
-  gap: 0.5rem;
+  gap: $space-1;
 }
 
 h2,

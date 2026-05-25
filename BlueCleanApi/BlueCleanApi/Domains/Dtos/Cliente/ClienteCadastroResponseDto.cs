@@ -1,4 +1,4 @@
-namespace BlueCleanApi.Extensions.Dtos;
+namespace BlueCleanApi.Domains.Dtos.Cliente;
 
 /// <summary>
 /// Resposta do cadastro de cliente.
