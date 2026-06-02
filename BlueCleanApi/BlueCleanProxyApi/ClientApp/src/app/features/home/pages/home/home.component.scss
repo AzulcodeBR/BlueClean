@@ -1,8 +1,23 @@
 $space-1: 0.5rem;
 
-section {
+.home-hero {
+  align-items: start;
   display: grid;
   gap: $space-1;
+  justify-items: center;
+}
+
+.home-banner {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.home-copy {
+  display: grid;
+  gap: $space-1;
+  justify-items: center;
+  text-align: center;
 }
 
 h2,

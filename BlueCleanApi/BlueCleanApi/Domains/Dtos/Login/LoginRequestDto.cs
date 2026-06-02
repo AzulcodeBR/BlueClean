@@ -6,10 +6,16 @@ namespace BlueCleanApi.Domains.Dtos.Login
     public class LoginRequestDto
     {
         /// <summary>
-        /// E-mail do usuário
+        /// E-mail ou CPF/CNPJ do usuário
         /// </summary>
         /// <example>usuario@blueclean.com</example>
-        public string Email { get; set; } = string.Empty;
+        public string Identificador { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Tipo de login (1 = Cliente, 2 = Gerencial)
+        /// </summary>
+        /// <example>1</example>
+        public int TipoLogin { get; set; }
 
         /// <summary>
         /// Senha do usuário (mínimo de 10 caracteres)

@@ -8,7 +8,7 @@ import {
 } from '../models/cliente-cadastro.model';
 
 @Injectable({ providedIn: 'root' })
-export class ClienteService {
+export class CadastroClienteService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = `${environment.apiUrl}/api/Cliente`;
 
@@ -16,3 +16,4 @@ export class ClienteService {
     return this.http.post<ClienteCadastroResponse>(`${this.baseUrl}/Cadastrar`, request);
   }
 }
+

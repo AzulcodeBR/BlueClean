@@ -21,6 +21,23 @@ $color-header-border: #d1d5db;
   min-height: 100dvh;
 }
 
+.loading-overlay {
+  align-items: center;
+  background: rgba(107, 114, 128, 0.72);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+}
+
+.loading-logo {
+  display: block;
+  height: auto;
+  max-width: min(40vw, 14rem);
+  width: 100%;
+}
+
 .skip-link {
   background: $color-skip-link-bg;
   color: #ffffff;
@@ -53,6 +70,22 @@ $color-header-border: #d1d5db;
 .brand-title {
   font-size: 1.5rem;
   margin: 0;
+}
+
+.brand {
+  align-items: center;
+  display: flex;
+  gap: $space-3;
+}
+
+.brand-text {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.brand-logo {
+  display: block;
+  flex: 0 0 auto;
 }
 
 .brand-subtitle {
@@ -94,5 +127,9 @@ main {
   .app-header {
     align-items: start;
     flex-direction: column;
+  }
+
+  .brand {
+    align-items: flex-start;
   }
 }

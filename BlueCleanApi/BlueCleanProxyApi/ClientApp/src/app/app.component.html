@@ -1,10 +1,31 @@
 <a class="skip-link" href="#main-content">Pular para o conteudo principal</a>
 
+@if (isLoading()) {
+  <div class="loading-overlay" aria-live="polite" aria-busy="true" role="status">
+    <img
+      ngSrc="/images/logos/logoLoading.png"
+      width="160"
+      height="160"
+      alt="Carregando"
+      class="loading-logo"
+    />
+  </div>
+}
+
 <div class="app-shell">
   <header class="app-header">
     <div class="brand">
-      <h1 class="brand-title">{{ title() }}</h1>
-      <p class="brand-subtitle">Estrutura inicial do frontend</p>
+      <img
+        ngSrc="/images/logos/LogoColorido.png"
+        width="192"
+        height="192"
+        alt="Logo BlueClean"
+        class="brand-logo"
+      />
+      <div class="brand-text">
+        <h1 class="brand-title">{{ title() }}</h1>
+        <p class="brand-subtitle">Estrutura inicial do frontend</p>
+      </div>
     </div>
 
     <nav aria-label="Navegacao principal">

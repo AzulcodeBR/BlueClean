@@ -3,15 +3,15 @@ import { StringResources } from '../../../../core/constants/string-resources';
 import { AuthSessionService } from '../../../../core/services/auth-session.service';
 
 @Component({
-  selector: 'app-cliente',
+  selector: 'app-gerencial',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  templateUrl: './gerencial.component.html',
+  styleUrls: ['./gerencial.component.scss']
 })
-export class ClienteComponent {
+export class GerencialComponent {
   private readonly authSessionService = inject(AuthSessionService);
 
-  protected readonly titulo = StringResources.ModuloClienteTitulo;
+  protected readonly titulo = StringResources.ModuloGerencialTitulo;
   protected readonly usuarioLabel = StringResources.UsuarioAutenticadoLabel;
   protected readonly nomeUsuario = computed(() => this.authSessionService.nomeUsuario() ?? '-');
 }

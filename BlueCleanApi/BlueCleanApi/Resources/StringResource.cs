@@ -19,8 +19,15 @@ public class StringResources
     public const string JwtKeyNaoConfigurado = "Jwt:Key não está configurado";
 
     public const string NenhumRegistroEncontrado = "Nenhum Registro Encontrado.";
-    public const string EmailOuSenhaInvalidos = "Email ou senha inválidos.";
+    public const string EmailOuSenhaInvalidos = "E-mail ou Senha Inválidos.";
+    public const string CpfCnpjOuSenhaInvalidos = "CPF/CNPJ ou Senha Inválidos.";
     public const string UsuarioNaoEstaAtivo = "O Usuário não está ativo, contate o administrador do sistema.";
+    public const string LoginTipoInvalido = "Tipo de login inválido.";
+    public const string LoginIdentificadorInvalido = "Informe um E-mail ou CPF/CNPJ válido.";
+    public const string ContaGerencialNaoAtiva = "A conta não está ativa. Procure o suporte técnico para mais informações.";
+    public const string ContaClienteBloqueadaMensagemFinal = "Para mais informações, entre em contato com a gestão da Lavanderia.";
+    public const string ContaClienteNaoAtiva = "A conta não está ativa. Para mais informações, entre em contato com a gestão da Lavanderia.";
+    public const string CadastroClienteNaoAtivoAguardandoEmail = "Cadastro não está ATIVO. Ative o cadastro no link enviado por E-mail.";
 
     // Validações de Login
     public const string EmailObrigatorio = "O E-mail ou a Senha é ínválido!";

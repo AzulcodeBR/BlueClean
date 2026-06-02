@@ -12,13 +12,13 @@ public class LoginService(
     private readonly INotificadorDominio _notificadorDominio = notificadorDominio;
     private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
 
-    public async Task<LoginResponseDto?> AutenticarAsync(string email, string senha)
+    public async Task<LoginResponseDto?> AutenticarAsync(string identificador, string senha, int tipoLogin)
     {
         try
         {
             var httpClient = _httpClientFactory.CreateClient("BlueCleanApi");
 
-            var request = new { Email = email, Senha = senha };
+            var request = new { Identificador = identificador, Senha = senha, TipoLogin = tipoLogin };
             var response = await httpClient.PostAsJsonAsync("/api/Login/Autenticar", request);
 
             if (response.IsSuccessStatusCode)

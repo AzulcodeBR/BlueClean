@@ -18,5 +18,12 @@ export const StringResources = {
   ClienteSenhaDeveConterCaractereEspecial: 'A senha deve conter pelo menos um caractere especial.',
   ClienteSenhaNaoPodeConterNumerosSequenciais: 'A senha não pode conter números sequenciais (ex.: 1234).',
   ClienteErroComunicacaoBackend: 'Erro ao comunicar com a API de backend.',
-  ClienteCadastroSucesso: 'Cliente cadastrado com sucesso. Código: {0}.'
+  ClienteCadastroSucesso: 'Cliente cadastrado com sucesso. Código: {0}.',
+  LoginIdentificadorObrigatorio: 'Informe E-mail ou CPF/CNPJ.',
+  LoginIdentificadorInvalido: 'Informe um E-mail ou CPF/CNPJ válido.',
+  LoginSenhaObrigatoria: 'A senha é obrigatória.',
+  LoginErroComunicacaoBackend: 'Erro ao comunicar com a API de backend durante o login.',
+  ModuloClienteTitulo: 'Módulo Cliente',
+  ModuloGerencialTitulo: 'Módulo Gerencial',
+  UsuarioAutenticadoLabel: 'Usuário autenticado:'
 } as const;

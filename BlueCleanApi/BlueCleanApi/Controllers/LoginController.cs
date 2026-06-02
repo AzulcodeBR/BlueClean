@@ -23,7 +23,7 @@ namespace BlueCleanApi.Controllers
         /// <summary>
         /// Autentica um usuário no sistema e retorna um token JWT
         /// </summary>
-        /// <param name="request">Dados de login contendo email e senha</param>
+        /// <param name="request">Dados de login contendo identificador, tipo e senha</param>
         /// <returns>Token JWT e informações do usuário autenticado</returns>
         /// <response code="200">Autenticação realizada com sucesso</response>
         /// <response code="401">Credenciais inválidas ou usuário não autorizado</response>
@@ -32,7 +32,8 @@ namespace BlueCleanApi.Controllers
         /// 
         ///     POST /api/Login/Autenticar
         ///     {
-        ///        "email": "usuario@blueclean.com",
+        ///        "identificador": "usuario@blueclean.com",
+        ///        "tipoLogin": 1,
         ///        "senha": "senhaSegura123"
         ///     }
         /// 
@@ -43,7 +44,7 @@ namespace BlueCleanApi.Controllers
         [ProducesResponseType(typeof(List<string>), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Autenticar([FromBody] LoginRequestDto request)
         {
-            var retorno = await _loginService.AutenticarAsync(request.Email, request.Senha);
+            var retorno = await _loginService.AutenticarAsync(request.Identificador, request.Senha, request.TipoLogin);
 
             if (retorno == null || !_notificadorDominio.VerificarOperacao())
             {

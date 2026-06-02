@@ -17,10 +17,13 @@ public class LoginController(
     [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Autenticar([FromBody] LoginRequestDto request)
     {
-        var retorno = await _loginService.AutenticarAsync(request.Email, request.Senha);
+        var retorno = await _loginService.AutenticarAsync(
+          request.Identificador,
+          request.Senha,
+          request.TipoLogin);
 
         if (retorno == null || !_notificadorDominio.VerificarOperacao())
-            return BadRequestResponse();
+            return UnauthorizedResponse();
 
         return Ok(retorno);
     }

@@ -102,6 +102,20 @@ export function validarEmailCliente(email: string): boolean {
   return pattern.test(valor);
 }
 
+export function validarCpfOuCnpj(valor: string): boolean {
+  const documento = apenasDigitos(valor);
+
+  if (documento.length === 11) {
+    return validarCpf(documento);
+  }
+
+  if (documento.length === 14) {
+    return validarCnpj(documento);
+  }
+
+  return false;
+}
+
 export function nomeCompletoValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const valor = String(control.value ?? '').trim();
@@ -184,21 +198,9 @@ export function cpfCnpjValidator(): ValidatorFn {
       return { required: { message: StringResources.ClienteCpfCnpjObrigatorio } };
     }
 
-    const documento = apenasDigitos(valor);
-
-    if (documento.length === 11) {
-      return validarCpf(documento)
-        ? null
-        : { cpfCnpjInvalido: { message: StringResources.ClienteCpfCnpjInvalido } };
-    }
-
-    if (documento.length === 14) {
-      return validarCnpj(documento)
-        ? null
-        : { cpfCnpjInvalido: { message: StringResources.ClienteCpfCnpjInvalido } };
-    }
-
-    return { cpfCnpjInvalido: { message: StringResources.ClienteCpfCnpjInvalido } };
+    return validarCpfOuCnpj(valor)
+      ? null
+      : { cpfCnpjInvalido: { message: StringResources.ClienteCpfCnpjInvalido } };
   };
 }
 
