@@ -17,6 +17,8 @@ export const StringResources = {
   ClienteSenhaDeveConterLetraMaiuscula: 'A senha deve conter pelo menos uma letra maiúscula.',
   ClienteSenhaDeveConterCaractereEspecial: 'A senha deve conter pelo menos um caractere especial.',
   ClienteSenhaNaoPodeConterNumerosSequenciais: 'A senha não pode conter números sequenciais (ex.: 1234).',
+  ClienteConfirmacaoSenhaObrigatoria: 'A confirmação da senha é obrigatória.',
+  ClienteConfirmacaoSenhaInvalida: 'A confirmação de senha deve ser igual à senha.',
   ClienteErroComunicacaoBackend: 'Erro ao comunicar com a API de backend.',
   ClienteCadastroSucesso: 'Cliente cadastrado com sucesso. Código: {0}.',
   LoginIdentificadorObrigatorio: 'Informe E-mail ou CPF/CNPJ.',
@@ -24,6 +26,6 @@ export const StringResources = {
   LoginSenhaObrigatoria: 'A senha é obrigatória.',
   LoginErroComunicacaoBackend: 'Erro ao comunicar com a API de backend durante o login.',
   ModuloClienteTitulo: 'Módulo Cliente',
-  ModuloGerencialTitulo: 'Módulo Gerencial',
+  GerencialTitulo: 'Gerencial',
   UsuarioAutenticadoLabel: 'Usuário autenticado:'
 } as const;

@@ -7,20 +7,46 @@ $space-5: 1rem;
 $radius-sm: 0.375rem;
 
 $color-border: #9ca3af;
-$color-error: #b91c1c;
+$color-success-bg: #d1e7dd;
+$color-success-border: #badbcc;
+$color-success-text: #0f5132;
+$color-danger-bg: #fef2f2;
+$color-danger-border: #fecaca;
+$color-danger-text: #b91c1c;
+$color-error: #f87171;
 $color-button: #1d4ed8;
 $color-button-hover: #1e40af;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+section {
+  display: grid;
+  gap: $space-5;
+  align-content: center;
+  justify-items: center;
+  min-height: 100%;
+  width: 100%;
+}
+
+h2,
+p {
+  margin: 0;
+}
 
 form {
   display: grid;
   gap: $space-5;
-  margin-top: $space-5;
   max-width: 26rem;
+  width: min(100%, 26rem);
 }
 
 .field {
   display: grid;
   gap: $space-1;
+  width: 100%;
 }
 
 label {
@@ -31,7 +57,32 @@ input {
   border: 1px solid $color-border;
   border-radius: $radius-sm;
   font: inherit;
+  min-height: 2.5rem;
+  width: 100%;
   padding: $space-2 $space-3;
+}
+
+.feedback {
+  border-radius: $radius-sm;
+  padding: $space-4;
+  width: min(100%, 26rem);
+
+  &.success {
+    background: $color-success-bg;
+    border: 1px solid $color-success-border;
+    color: $color-success-text;
+  }
+
+  &.error {
+    background: $color-danger-bg;
+    border: 1px solid $color-danger-border;
+    color: $color-danger-text;
+  }
+
+  ul {
+    margin: $space-2 0 0;
+    padding-left: 1.25rem;
+  }
 }
 
 .field-error {
@@ -40,16 +91,12 @@ input {
   margin: 0;
 }
 
-.api-errors {
-  color: $color-error;
-  margin: 0;
-  padding-left: 1.25rem;
-}
-
 .actions {
   align-items: center;
   display: flex;
   gap: $space-4;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 button {

@@ -1,6 +1,50 @@
-$color-page-bg: #f8fafc;
-$color-page-text: #111827;
-$color-focus: #2563eb;
+:root {
+  --font-family-base: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-family-display: var(--font-family-base);
+
+  --color-page-bg: #07111f;
+  --color-page-bg-alt: #0b172b;
+  --color-surface: rgba(10, 18, 33, 0.88);
+  --color-surface-raised: rgba(18, 30, 53, 0.94);
+  --color-surface-strong: #13233f;
+  --color-border: rgba(148, 163, 184, 0.16);
+  --color-border-strong: rgba(125, 211, 252, 0.28);
+
+  --color-text: #e5eefb;
+  --color-text-muted: #9eb1c9;
+  --color-text-soft: #c8d6e8;
+
+  --color-primary: #4f8cff;
+  --color-primary-strong: #2f6bff;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #39e0c0;
+  --color-accent-soft: rgba(57, 224, 192, 0.12);
+  --color-field-valid: #22c55e;
+  --color-field-invalid: #ef4444;
+  --color-error-text: #f87171;
+  --color-hover: rgba(255, 255, 255, 0.05);
+  --color-focus: #7dd3fc;
+
+  --shadow-sm: 0 8px 22px rgba(2, 6, 23, 0.28);
+  --shadow-md: 0 18px 44px rgba(2, 6, 23, 0.34);
+  --shadow-lg: 0 30px 80px rgba(2, 6, 23, 0.46);
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.35rem;
+  --radius-xl: 1.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+
+  --layout-max-width: 92rem;
+  --layout-sidebar-width: 18.75rem;
+}
 
 *,
 *::before,
@@ -8,18 +52,135 @@ $color-focus: #2563eb;
   box-sizing: border-box;
 }
 
+html {
+  color-scheme: dark;
+  min-height: 100%;
+}
+
 body {
-  background: $color-page-bg;
-  color: $color-page-text;
+  background:
+    radial-gradient(circle at top left, rgba(79, 140, 255, 0.2), transparent 30%),
+    radial-gradient(circle at top right, rgba(57, 224, 192, 0.12), transparent 24%),
+    linear-gradient(180deg, var(--color-page-bg-alt), var(--color-page-bg));
+  color: var(--color-text);
+  font-family: var(--font-family-base);
   margin: 0;
+  min-height: 100dvh;
+}
+
+.skip-link {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  position: absolute;
+  text-decoration: none;
+  top: -100%;
+  z-index: 20;
+
+  &:focus-visible {
+    top: var(--space-4);
+  }
+}
+
+.loading-overlay {
+  align-items: center;
+  background: rgba(6, 12, 22, 0.78);
+  backdrop-filter: blur(14px);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+}
+
+.loading-logo {
+  display: block;
+  height: auto;
+  max-width: min(36vw, 14rem);
+  width: 100%;
+}
+
+.eyebrow,
+.content-kicker,
+.sidebar-kicker {
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 a,
 button,
 input,
+select,
+textarea,
 main {
+  font: inherit;
+
   &:focus-visible {
-    outline: 3px solid $color-focus;
+    outline: 3px solid var(--color-focus);
     outline-offset: 2px;
   }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app-shell .shell-grid.shell-grid--full {
+  grid-template-columns: 1fr;
+}
+
+.shell-footer {
+  background: linear-gradient(135deg, var(--color-surface-raised), var(--color-surface));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-6);
+  text-align: center;
+
+  p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+input.ng-valid.ng-touched,
+input.ng-valid.ng-dirty,
+textarea.ng-valid.ng-touched,
+textarea.ng-valid.ng-dirty,
+select.ng-valid.ng-touched,
+select.ng-valid.ng-dirty {
+  border-color: var(--color-field-valid);
+  border-width: 2px;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+
+input.ng-invalid.ng-touched,
+input.ng-invalid.ng-dirty,
+textarea.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-dirty,
+select.ng-invalid.ng-touched,
+select.ng-invalid.ng-dirty {
+  border-color: var(--color-field-invalid);
+  border-width: 2px;
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.24);
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin-top: 0;
 }

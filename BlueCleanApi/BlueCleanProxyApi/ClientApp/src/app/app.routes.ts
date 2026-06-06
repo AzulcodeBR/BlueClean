@@ -35,7 +35,7 @@ export const routes: Routes = [
       )
   },
   {
-    path: 'modulo-gerencial',
+    path: 'gerencial',
     canActivate: [authGuard],
     data: { tipoLogin: TipoLogin.Gerencial },
     loadComponent: () =>

@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StringResources } from '../../../../core/constants/string-resources';
 import {
   validarCpfOuCnpj,
@@ -23,8 +23,6 @@ interface LoginContext {
   titulo: string;
   subtitulo: string;
   rotaSucesso: string;
-  rotaAlternativa: string;
-  textoAlternativa: string;
 }
 
 function identificadorValidator(): ValidatorFn {
@@ -46,7 +44,7 @@ function identificadorValidator(): ValidatorFn {
 @Component({
   selector: 'app-login',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -64,8 +62,6 @@ export class LoginComponent {
 
   protected readonly titulo = this.context.titulo;
   protected readonly subtitulo = this.context.subtitulo;
-  protected readonly textoAlternativa = this.context.textoAlternativa;
-  protected readonly rotaAlternativa = this.context.rotaAlternativa;
 
   protected readonly form = this.formBuilder.nonNullable.group({
     identificador: ['', [identificadorValidator()]],
@@ -138,9 +134,7 @@ export class LoginComponent {
         tipoLogin: TipoLogin.Gerencial,
         titulo: 'Login Gerencial',
         subtitulo: 'Acesso para a área administrativa.',
-        rotaSucesso: '/modulo-gerencial',
-        rotaAlternativa: '/login/cliente',
-        textoAlternativa: 'Acessar como Cliente'
+        rotaSucesso: '/gerencial'
       };
     }
 
@@ -148,9 +142,7 @@ export class LoginComponent {
       tipoLogin: TipoLogin.Cliente,
       titulo: 'Login Cliente',
       subtitulo: 'Acesso para clientes da plataforma.',
-        rotaSucesso: '/cliente',
-      rotaAlternativa: '/login/gerencial',
-      textoAlternativa: 'Acessar como Gerencial'
+      rotaSucesso: '/cliente'
     };
   }
 }

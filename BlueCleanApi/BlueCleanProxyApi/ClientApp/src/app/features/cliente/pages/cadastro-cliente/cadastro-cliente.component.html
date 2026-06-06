@@ -1,6 +1,6 @@
 <section aria-labelledby="cliente-title">
-  <h2 id="cliente-title">Cadastro de cliente</h2>
-  <p>Preencha os dados para criar um novo cliente.</p>
+  <h2 id="cliente-title">Cadastro de Cliente</h2>
+  <p>Preencha os dados para criar um novo cadastro</p>
 
   @if (successMessage(); as message) {
     <output class="feedback success">{{ message }}</output>
@@ -13,81 +13,93 @@
         @for (error of apiErrors(); track error) {
           <li>{{ error }}</li>
         }
-      </ul>/;
+      </ul>
     </div>
   }
 
   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-    <div class="field">
-      <label for="nome">Nome</label>
-      <input id="nome" type="text" formControlName="nome" autocomplete="name" />
-      @if (fieldError('nome'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
+    <div class="form-grid">
+      <div class="field">
+        <label for="cpfCnpj">CPF OU CNPJ</label>
+        <input id="cpfCnpj" type="text" formControlName="cpfCnpj" inputmode="numeric" />
+        @if (fieldError('cpfCnpj'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="nome">NOME OU RAZÃO SOCIAL</label>
+        <input id="nome" type="text" formControlName="nome" autocomplete="name" />
+        @if (fieldError('nome'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="telefone">CELULAR OU WHATSAPP</label>
+        <input
+          id="telefone"
+          type="tel"
+          formControlName="telefone"
+          autocomplete="tel"
+          inputmode="numeric"
+        />
+        @if (fieldError('telefone'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">E-MAIL</label>
+        <input id="email" type="email" formControlName="email" autocomplete="email" />
+        @if (fieldError('email'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="senha">SENHA</label>
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          autocomplete="new-password"
+          aria-describedby="senha-requisitos"
+        />
+        @if (fieldError('senha'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+        <p id="senha-requisitos" class="field-hint">
+          Mínimo de 10 caracteres, com letras, uma maiúscula, um caractere especial e sem números
+          sequenciais (ex.: 1234).
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+        <input
+          id="confirmarSenha"
+          type="password"
+          formControlName="confirmarSenha"
+          autocomplete="new-password"
+          aria-describedby="confirmar-senha-hint"
+          [class.field-control-invalid]="isConfirmarSenhaInvalida()"
+        />
+        @if (fieldError('confirmarSenha'); as error) {
+          <span class="field-error" role="alert">{{ error }}</span>
+        }
+        <p id="confirmar-senha-hint" class="field-hint">Repita a senha informada no campo anterior.</p>
+      </div>
     </div>
 
-    <div class="field">
-      <label for="email">E-mail</label>
-      <input id="email" type="email" formControlName="email" autocomplete="email" />
-      @if (fieldError('email'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
+    <div class="actions">
+      <button type="submit" [disabled]="isSubmitting()">
+        @if (isSubmitting()) {
+          Cadastrando...
+        } @else {
+          Cadastrar
+        }
+      </button>
     </div>
-
-    <div class="field">
-      <label for="telefone">Telefone</label>
-      <input
-        id="telefone"
-        type="tel"
-        formControlName="telefone"
-        autocomplete="tel"
-        inputmode="numeric"
-      />
-      @if (fieldError('telefone'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
-    </div>
-
-    <div class="field">
-      <label for="cpfCnpj">CPF ou CNPJ</label>
-      <input id="cpfCnpj" type="text" formControlName="cpfCnpj" inputmode="numeric" />
-      @if (fieldError('cpfCnpj'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
-    </div>
-
-    <div class="field">
-      <label for="senha">Senha</label>
-      <input
-        id="senha"
-        type="password"
-        formControlName="senha"
-        autocomplete="new-password"
-        aria-describedby="senha-requisitos"
-      />
-      <p id="senha-requisitos" class="field-hint">
-        Mínimo de 10 caracteres, com letras, uma maiúscula, um caractere especial e sem números
-        sequenciais (ex.: 1234).
-      </p>
-      @if (fieldError('senha'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
-    </div>
-
-    <div class="field">
-      <label for="observacao">Observação</label>
-      <textarea id="observacao" rows="4" formControlName="observacao"></textarea>
-      @if (fieldError('observacao'); as error) {
-        <span class="field-error" role="alert">{{ error }}</span>
-      }
-    </div>
-
-    <button type="submit" [disabled]="isSubmitting()">
-      @if (isSubmitting()) {
-        Cadastrando...
-      } @else {
-        Cadastrar cliente
-      }
-    </button>
   </form>
 </section>

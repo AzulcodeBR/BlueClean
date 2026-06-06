@@ -11,7 +11,7 @@ import { AuthSessionService } from '../../../../core/services/auth-session.servi
 export class GerencialComponent {
   private readonly authSessionService = inject(AuthSessionService);
 
-  protected readonly titulo = StringResources.ModuloGerencialTitulo;
+  protected readonly titulo = StringResources.GerencialTitulo;
   protected readonly usuarioLabel = StringResources.UsuarioAutenticadoLabel;
   protected readonly nomeUsuario = computed(() => this.authSessionService.nomeUsuario() ?? '-');
 }

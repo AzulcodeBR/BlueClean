@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StringResources } from '../../../../core/constants/string-resources';
 import {
+  confirmarSenhaObrigatoriaValidator,
   cpfCnpjValidator,
   emailClienteValidator,
   nomeCompletoValidator,
@@ -11,6 +12,15 @@ import {
   telefoneValidator
 } from '../../../../core/validators/cliente.validators';
 import { CadastroClienteService } from '../../services/cadastro-cliente.service';
+
+type CadastroClienteForm = {
+  cpfCnpj: string;
+  nome: string;
+  telefone: string;
+  email: string;
+  senha: string;
+  confirmarSenha: string;
+};
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -27,17 +37,22 @@ export class CadastroClienteComponent {
   protected readonly apiErrors = signal<string[]>([]);
   protected readonly successMessage = signal<string | null>(null);
 
-  protected readonly form = this.formBuilder.nonNullable.group({
-    nome: ['', [nomeCompletoValidator(), Validators.maxLength(150)]],
-    email: ['', [emailClienteValidator(), Validators.maxLength(150)]],
-    telefone: ['', [telefoneValidator()]],
-    cpfCnpj: ['', [cpfCnpjValidator()]],
-    senha: ['', [senhaClienteValidator()]],
-    observacao: ['', [Validators.maxLength(500)]]
-  });
+  protected readonly form = this.formBuilder.nonNullable.group(
+    {
+      cpfCnpj: ['', [cpfCnpjValidator()]],
+      nome: ['', [nomeCompletoValidator(), Validators.maxLength(150)]],
+      telefone: ['', [telefoneValidator()]],
+      email: ['', [emailClienteValidator(), Validators.maxLength(150)]],
+      senha: ['', [senhaClienteValidator()]],
+      confirmarSenha: ['', [confirmarSenhaObrigatoriaValidator()]]
+    },
+    {
+      validators: [this.validarSenhasIguais()]
+    }
+  );
 
   protected fieldError(
-    controlName: 'nome' | 'email' | 'telefone' | 'cpfCnpj' | 'senha' | 'observacao'
+    controlName: keyof CadastroClienteForm
   ): string | null {
     const control = this.form.get(controlName);
 
@@ -50,7 +65,36 @@ export class CadastroClienteComponent {
       return mensagemCustomizada;
     }
 
+    if (
+      controlName === 'confirmarSenha' &&
+      this.form.hasError('senhasDiferentes') &&
+      (control.touched || control.dirty)
+    ) {
+      return StringResources.ClienteConfirmacaoSenhaInvalida;
+    }
+
     return null;
+  }
+
+  protected isConfirmarSenhaInvalida(): boolean {
+    const control = this.form.controls.confirmarSenha;
+
+    return (control.touched || control.dirty) && this.form.hasError('senhasDiferentes');
+  }
+
+  private validarSenhasIguais() {
+    return () => {
+      const senha = this.form?.controls.senha.value ?? '';
+      const confirmarSenha = this.form?.controls.confirmarSenha.value ?? '';
+
+      if (!senha || !confirmarSenha || senha === confirmarSenha) {
+        return null;
+      }
+
+      return {
+        senhasDiferentes: true
+      };
+    };
   }
 
   protected submit(): void {
@@ -73,7 +117,7 @@ export class CadastroClienteComponent {
         telefone: payload.telefone.trim() || null,
         cpfCnpj: payload.cpfCnpj.trim(),
         senha: payload.senha,
-        observacao: payload.observacao.trim() || null
+        observacao: null
       })
       .subscribe({
         next: (response) => {

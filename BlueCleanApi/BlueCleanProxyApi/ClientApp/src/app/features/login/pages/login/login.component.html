@@ -2,6 +2,17 @@
   <h2 id="login-title">{{ titulo }}</h2>
   <p>{{ subtitulo }}</p>
 
+  @if (apiErrors().length > 0) {
+    <div class="feedback error" role="alert" aria-live="assertive">
+      <p>Corrija os itens abaixo:</p>
+      <ul>
+        @for (message of apiErrors(); track message) {
+          <li>{{ message }}</li>
+        }
+      </ul>
+    </div>
+  }
+
   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
     <div class="field">
       <label for="identificador">E-mail ou CPF/CNPJ</label>
@@ -31,19 +42,10 @@
       }
     </div>
 
-    @if (apiErrors().length > 0) {
-      <ul class="api-errors" aria-live="polite">
-        @for (message of apiErrors(); track message) {
-          <li>{{ message }}</li>
-        }
-      </ul>
-    }
-
     <div class="actions">
       <button type="submit" [disabled]="isSubmitting()">
         {{ isSubmitting() ? 'Entrando...' : 'Entrar' }}
       </button>
-      <a [routerLink]="rotaAlternativa">{{ textoAlternativa }}</a>
     </div>
   </form>
 </section>

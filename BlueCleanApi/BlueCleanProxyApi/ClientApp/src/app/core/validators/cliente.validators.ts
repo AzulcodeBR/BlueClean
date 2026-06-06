@@ -238,6 +238,18 @@ export function senhaClienteValidator(): ValidatorFn {
   };
 }
 
+export function confirmarSenhaObrigatoriaValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const valor = String(control.value ?? '').trim();
+
+    if (!valor) {
+      return { required: { message: StringResources.ClienteConfirmacaoSenhaObrigatoria } };
+    }
+
+    return null;
+  };
+}
+
 export function obterMensagemErro(control: AbstractControl | null): string | null {
   if (!control?.errors || !(control.touched || control.dirty)) {
     return null;
