@@ -70,5 +70,5 @@ public class StringResources
     public const string ClienteSenhaDeveConterLetraMaiuscula = "A senha deve conter pelo menos uma letra maiúscula.";
     public const string ClienteSenhaDeveConterCaractereEspecial = "A senha deve conter pelo menos um caractere especial.";
     public const string ClienteSenhaNaoPodeConterNumerosSequenciais = "A senha não pode conter números sequenciais (ex.: 1234).";
-    public const string ClienteErroComunicacaoBackend = "Erro ao comunicar com a API de backend.";
+    public const string ClienteErroComunicacaoBackend = "Erro ao comunicar com a API.";
 }
