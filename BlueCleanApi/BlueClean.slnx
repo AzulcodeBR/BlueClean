@@ -1,8 +1,0 @@
-<Solution>
-  <Folder Name="/Backend/">
-    <Project Path="BlueCleanApi/BlueCleanApi.csproj" />
-  </Folder>
-  <Folder Name="/Frontend/">
-    <Project Path="BlueCleanProxyApi/BlueCleanProxyApi.csproj" Id="9dce7bc5-1ab7-46e0-8b22-ccf59c2d3908" />
-  </Folder>
-</Solution>
