@@ -11,8 +11,8 @@ public partial class Municipio
 
     public int IbgeId { get; set; }
 
-    public string Nome { get; set; } = null!;
-
+    public string Nome { get; set; }
+    
     public virtual Estado Estado { get; set; } = null!;
 
     public virtual ICollection<LavanderiaEndereco> LavanderiaEndereco { get; set; } = new List<LavanderiaEndereco>();

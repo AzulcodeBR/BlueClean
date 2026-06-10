@@ -7,6 +7,8 @@ public partial class Estado
 {
     public int EstadoId { get; set; }
 
+    public int IbgeId { get; set; }
+
     public string Nome { get; set; } = null!;
 
     public string Sigla { get; set; } = null!;
