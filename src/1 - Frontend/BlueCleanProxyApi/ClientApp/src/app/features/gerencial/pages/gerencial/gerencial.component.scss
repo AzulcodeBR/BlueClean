@@ -2,9 +2,149 @@
   display: block;
 }
 
-.module-container {
-  align-content: center;
-  justify-items: center;
-  min-height: 60dvh;
-  text-align: center;
+.dashboard {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #d3ddec;
+  border-radius: 0.95rem;
+  box-shadow: var(--shadow-sm);
+  min-height: 6.6rem;
+  padding: 1rem;
+
+  p {
+    color: #62758d;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .metric-head {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  img {
+    background: #f2f6fc;
+    border: 1px solid #d8e1f0;
+    border-radius: 0.65rem;
+    height: 2rem;
+    padding: 0.3rem;
+    width: 2rem;
+  }
+
+  strong {
+    color: #071638;
+    display: block;
+    font-family: var(--font-family-display);
+    font-size: 2.1rem;
+    margin-top: 0.55rem;
+  }
+}
+
+.panels-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.status-panel {
+  background: #ffffff;
+  border: 1px solid #d3ddec;
+  border-radius: 0.95rem;
+  box-shadow: var(--shadow-sm);
+  min-height: 16rem;
+  padding: 1rem 1rem 0.4rem;
+
+  h3 {
+    color: #0b1d43;
+    font-family: var(--font-family-display);
+    font-size: 1.34rem;
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+  }
+
+  li {
+    align-items: center;
+    border-top: 1px solid #e5eaf2;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9rem 0;
+  }
+
+  li:first-child {
+    border-top: 0;
+    padding-top: 0.15rem;
+  }
+
+  span {
+    color: #33475f;
+  }
+
+  .status-label {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.55rem;
+  }
+
+  .status-label img {
+    flex: 0 0 auto;
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  strong {
+    color: #081a3d;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+}
+
+.session-text {
+  color: #5f7086;
+  margin: 0.25rem 0 0;
+}
+
+@media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panels-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
 }

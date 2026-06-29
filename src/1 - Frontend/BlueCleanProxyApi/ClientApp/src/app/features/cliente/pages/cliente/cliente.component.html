@@ -1,4 +1,29 @@
-<section class="module-container" aria-labelledby="modulo-cliente-title">
-  <h2 id="modulo-cliente-title">{{ titulo }}</h2>
-  <p><strong>{{ usuarioLabel }}</strong> {{ nomeUsuario() }}</p>
+<section class="cliente-dashboard" aria-labelledby="modulo-cliente-title">
+  <h2 id="modulo-cliente-title" class="title">Painel do cliente</h2>
+  <p class="intro">Acompanhe os principais dados da sua conta em um unico lugar.</p>
+
+  <div class="cards-grid">
+    <article class="info-card">
+      <p class="label">Conta</p>
+      <strong>Ativa</strong>
+      <span>Acesso liberado para os servicos da plataforma.</span>
+    </article>
+
+    <article class="info-card">
+      <p class="label">Perfil</p>
+      <strong>Cliente</strong>
+      <span>Atualize seus dados sempre que necessario.</span>
+    </article>
+
+    <article class="info-card">
+      <p class="label">Cadastro</p>
+      <strong>Completo</strong>
+      <span>Seus dados principais estao validados.</span>
+    </article>
+  </div>
+
+  <article class="identity-card">
+    <h3>Identificacao da sessao</h3>
+    <p><strong>{{ usuarioLabel }}</strong> {{ nomeUsuario() }}</p>
+  </article>
 </section>

@@ -1,64 +1,83 @@
-<section aria-labelledby="cliente-title">
-  <h2 id="cliente-title">Cadastro de Cliente</h2>
-  <p>Preencha os dados para criar um novo cadastro</p>
+<section class="register-page" aria-labelledby="cliente-title">
+  <div class="register-card">
+    <a class="brand" routerLink="/login/gerencial" aria-label="Voltar para login">
+      <img src="/images/logos/LogoColorido.png" alt="Logo BlueClean" />
+      <span>
+        <strong>BlueClean | Lavanderia SaaS</strong>
+        <small>Crie sua conta</small>
+      </span>
+    </a>
 
-  @if (successMessage(); as message) {
-    <output class="feedback success">{{ message }}</output>
-  }
+    <h1 id="cliente-title">Criar uma conta</h1>
+    <p class="subtitle">Escolha o tipo de conta e preencha os dados</p>
 
-  @if (apiErrors().length > 0) {
-    <div class="feedback error" role="alert" aria-live="assertive">
-      <p>Corrija os itens abaixo:</p>
-      <ul>
-        @for (error of apiErrors(); track error) {
-          <li>{{ error }}</li>
-        }
-      </ul>
+    <div class="type-tabs" role="tablist" aria-label="Tipo de conta">
+      <button type="button" role="tab" [attr.aria-selected]="tipoConta() === 'cliente'" [class.is-active]="tipoConta() === 'cliente'" (click)="setTipoConta('cliente')">
+        Cliente
+      </button>
+      <button type="button" role="tab" [attr.aria-selected]="tipoConta() === 'administrador'" [class.is-active]="tipoConta() === 'administrador'" (click)="setTipoConta('administrador')">
+        Administrador
+      </button>
     </div>
-  }
 
-  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-    <div class="form-grid">
-      <div class="field">
-        <label for="cpfCnpj">CPF OU CNPJ</label>
-        <input id="cpfCnpj" type="text" formControlName="cpfCnpj" inputmode="numeric" />
-        @if (fieldError('cpfCnpj'); as error) {
-          <span class="field-error" role="alert">{{ error }}</span>
-        }
+    @if (successMessage(); as message) {
+      <output class="feedback success">{{ message }}</output>
+    }
+
+    @if (apiErrors().length > 0) {
+      <div class="feedback error" role="alert" aria-live="assertive">
+        <p>Corrija os itens abaixo:</p>
+        <ul>
+          @for (error of apiErrors(); track error) {
+            <li>{{ error }}</li>
+          }
+        </ul>
       </div>
+    }
 
-      <div class="field">
-        <label for="nome">NOME OU RAZÃO SOCIAL</label>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field field-full">
+        <label for="nome">Nome completo</label>
         <input id="nome" type="text" formControlName="nome" autocomplete="name" />
         @if (fieldError('nome'); as error) {
           <span class="field-error" role="alert">{{ error }}</span>
         }
       </div>
 
-      <div class="field">
-        <label for="telefone">CELULAR OU WHATSAPP</label>
-        <input
-          id="telefone"
-          type="tel"
-          formControlName="telefone"
-          autocomplete="tel"
-          inputmode="numeric"
-        />
-        @if (fieldError('telefone'); as error) {
-          <span class="field-error" role="alert">{{ error }}</span>
-        }
+      <div class="field-row">
+        <div class="field">
+          <label for="cpfCnpj">CPF / CNPJ</label>
+          <input id="cpfCnpj" type="text" formControlName="cpfCnpj" inputmode="numeric" />
+          @if (fieldError('cpfCnpj'); as error) {
+            <span class="field-error" role="alert">{{ error }}</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="telefone">Telefone</label>
+          <input
+            id="telefone"
+            type="tel"
+            formControlName="telefone"
+            autocomplete="tel"
+            inputmode="numeric"
+          />
+          @if (fieldError('telefone'); as error) {
+            <span class="field-error" role="alert">{{ error }}</span>
+          }
+        </div>
       </div>
 
-      <div class="field">
-        <label for="email">E-MAIL</label>
+      <div class="field field-full">
+        <label for="email">E-mail</label>
         <input id="email" type="email" formControlName="email" autocomplete="email" />
         @if (fieldError('email'); as error) {
           <span class="field-error" role="alert">{{ error }}</span>
         }
       </div>
 
-      <div class="field">
-        <label for="senha">SENHA</label>
+      <div class="field field-full">
+        <label for="senha">Senha</label>
         <input
           id="senha"
           type="password"
@@ -70,13 +89,12 @@
           <span class="field-error" role="alert">{{ error }}</span>
         }
         <p id="senha-requisitos" class="field-hint">
-          Mínimo de 10 caracteres, com letras, uma maiúscula, um caractere especial e sem números
-          sequenciais (ex.: 1234).
+          Minimo de 10 caracteres, com letras, uma maiuscula, um caractere especial e sem numeros sequenciais (ex.: 1234).
         </p>
       </div>
 
-      <div class="field">
-        <label for="confirmarSenha">CONFIRMAR SENHA</label>
+      <div class="field field-full">
+        <label for="confirmarSenha">Confirmar senha</label>
         <input
           id="confirmarSenha"
           type="password"
@@ -90,16 +108,19 @@
         }
         <p id="confirmar-senha-hint" class="field-hint">Repita a senha informada no campo anterior.</p>
       </div>
-    </div>
 
-    <div class="actions">
       <button type="submit" [disabled]="isSubmitting()">
         @if (isSubmitting()) {
-          Cadastrando...
+          Criando conta...
         } @else {
-          Cadastrar
+          Criar conta
         }
       </button>
-    </div>
-  </form>
+    </form>
+
+    <p class="login-link">
+      Ja tem conta?
+      <a routerLink="/login/gerencial">Entrar</a>
+    </p>
+  </div>
 </section>

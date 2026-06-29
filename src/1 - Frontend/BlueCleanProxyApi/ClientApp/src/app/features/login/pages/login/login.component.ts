@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { StringResources } from '../../../../core/constants/string-resources';
 import {
   validarCpfOuCnpj,
@@ -44,7 +44,7 @@ function identificadorValidator(): ValidatorFn {
 @Component({
   selector: 'app-login',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -59,9 +59,6 @@ export class LoginComponent {
   protected readonly apiErrors = signal<string[]>([]);
 
   private readonly context = this.getContext();
-
-  protected readonly titulo = this.context.titulo;
-  protected readonly subtitulo = this.context.subtitulo;
 
   protected readonly form = this.formBuilder.nonNullable.group({
     identificador: ['', [identificadorValidator()]],

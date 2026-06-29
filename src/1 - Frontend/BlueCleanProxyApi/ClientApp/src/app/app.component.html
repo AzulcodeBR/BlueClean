@@ -1,4 +1,5 @@
-<a class="skip-link" href="#main-content">Pular para o conteudo principal</a>
+<a class="skip-link" href="#app-content-target">Pular para o conteudo principal</a>
+<span id="app-content-target" tabindex="-1"></span>
 
 @if (isLoading()) {
   <output class="loading-overlay" aria-live="polite" aria-busy="true">
@@ -12,90 +13,56 @@
   </output>
 }
 
-<div class="app-shell">
-  <header class="shell-header">
-    <a class="brand" routerLink="/" aria-label="Ir para a pagina inicial">
-      <img
-        ngSrc="/images/logos/LogoColorido.png"
-        width="192"
-        height="192"
-        alt="Logo BlueClean"
-        class="brand-logo"
-      />
-      <span class="brand-text">
-        <strong>{{ title() }}</strong>
-        <span>Layout modular e configuravel</span>
-      </span>
-    </a>
+@if (showPrivateShell()) {
+  <div class="portal-shell">
+    <aside class="portal-sidebar" aria-label="Menu lateral">
+      <a class="portal-brand" routerLink="/" aria-label="Ir para dashboard">
+        <img
+          ngSrc="/images/logos/LogoColorido.png"
+          width="96"
+          height="96"
+          alt="Logo Lavanderia"
+          class="brand-mark"
+        />
+        <span class="brand-copy">
+          <strong>Lavanderia</strong>
+          <small>SaaS Manager</small>
+        </span>
+      </a>
 
-    <div class="header-text">
-      <span class="eyebrow">Interface operacional</span>
-      <p>
-        Estrutura inspirada em plataformas premium, com navegacao lateral, hierarquia visual
-        clara e tokens reutilizaveis.
-      </p>
-    </div>
-  </header>
+      <nav class="portal-nav" aria-label="Navegacao principal">
+        <ul>
+          @for (item of sidebarItems(); track item.path) {
+            <li>
+              <a [routerLink]="item.path" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: false }">
+                <span>{{ item.label }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
 
-  <div class="shell-grid" [class.shell-grid--full]="!showSidebar()">
-    @if (showSidebar()) {
-      <aside class="sidebar" aria-label="Menu lateral">
-        <section class="sidebar-card">
-          <div class="sidebar-card__heading">
-            <span>Menu</span>
-            <p>Atalhos principais</p>
-          </div>
+      <section class="user-panel" aria-label="Usuario autenticado">
+        <p class="user-name">{{ nomeUsuario() }}</p>
+        <p class="user-role">{{ tipoUsuario() }}</p>
+        <button type="button" (click)="logout()">Sair</button>
+      </section>
+    </aside>
 
-          <nav aria-label="Navegacao lateral principal">
-            <ul class="nav-list">
-              @for (item of navItems; track item.path) {
-                <li>
-                  <a
-                    [routerLink]="item.path"
-                    routerLinkActive="is-active"
-                    [routerLinkActiveOptions]="{ exact: item.path === '/' }"
-                  >
-                    <span class="nav-label">{{ item.label }}</span>
-                    <span class="nav-path">{{ item.path }}</span>
-                  </a>
-                </li>
-              }
-            </ul>
-          </nav>
-        </section>
+    <section class="portal-main" aria-label="Conteudo principal">
+      <header class="portal-header">
+        <span class="eyebrow">{{ pageMeta().kicker }}</span>
+        <h1>{{ pageMeta().title }}</h1>
+        <p>{{ pageMeta().subtitle }}</p>
+      </header>
 
-        <section class="sidebar-card sidebar-card--highlight">
-          <span class="sidebar-kicker">Tema configuravel</span>
-          <p>
-            Cores, fontes, bordas, espacos, sombras e estados visuais sao definidos por variaveis
-            globais para facilitar futuras trocas de identidade.
-          </p>
-        </section>
-      </aside>
-    }
-
-    <section class="content-panel" aria-label="Conteudo principal da aplicacao">
-      <div class="content-panel__chrome">
-        <div>
-          <span class="content-kicker">Area principal</span>
-          <h2>Conteudo dinamico</h2>
-        </div>
-
-        <p>O roteamento carrega cada modulo sem exigir alteracoes no shell da aplicacao.</p>
-      </div>
-
-      <main id="main-content" class="content-surface" tabindex="-1">
+      <main class="portal-content">
         <router-outlet />
       </main>
     </section>
   </div>
-
-  <footer class="shell-footer" aria-label="Rodape da aplicacao">
-    <p>
-      © Copyright 2022-{{ anoAtual }}
-      <a href="https://www.azulcode.com.br" target="_blank" rel="noopener noreferrer">
-        Azulcode Consultoria e Desenvolvimento Web
-      </a>
-    </p>
-  </footer>
-</div>
+} @else {
+  <main class="public-main">
+    <router-outlet />
+  </main>
+}

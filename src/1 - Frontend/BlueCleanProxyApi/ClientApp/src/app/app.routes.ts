@@ -5,8 +5,8 @@ import { TipoLogin } from './features/login/models/login.model';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./features/home/pages/home/home.component').then((m) => m.HomeComponent)
+    redirectTo: 'login/gerencial',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -41,6 +41,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/gerencial/pages/gerencial/gerencial.component').then(
         (m) => m.GerencialComponent
+      )
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/cliente/pages/cadastro-cliente/cadastro-cliente.component').then(
+        (m) => m.CadastroClienteComponent
       )
   },
   {

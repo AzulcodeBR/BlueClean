@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 import { StringResources } from '../../../../core/constants/string-resources';
 import {
   confirmarSenhaObrigatoriaValidator,
@@ -25,7 +26,7 @@ type CadastroClienteForm = {
 @Component({
   selector: 'app-cadastro-cliente',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './cadastro-cliente.component.html',
   styleUrls: ['./cadastro-cliente.component.scss']
 })
@@ -36,6 +37,7 @@ export class CadastroClienteComponent {
   protected readonly isSubmitting = signal(false);
   protected readonly apiErrors = signal<string[]>([]);
   protected readonly successMessage = signal<string | null>(null);
+  protected readonly tipoConta = signal<'cliente' | 'administrador'>('cliente');
 
   protected readonly form = this.formBuilder.nonNullable.group(
     {
@@ -80,6 +82,10 @@ export class CadastroClienteComponent {
     const control = this.form.controls.confirmarSenha;
 
     return (control.touched || control.dirty) && this.form.hasError('senhasDiferentes');
+  }
+
+  protected setTipoConta(tipo: 'cliente' | 'administrador'): void {
+    this.tipoConta.set(tipo);
   }
 
   private validarSenhasIguais() {

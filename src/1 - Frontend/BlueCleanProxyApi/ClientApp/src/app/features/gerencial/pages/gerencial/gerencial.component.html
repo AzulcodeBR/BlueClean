@@ -1,4 +1,99 @@
-<section class="module-container" aria-labelledby="gerencial-title">
-  <h2 id="gerencial-title">{{ titulo }}</h2>
-  <p><strong>{{ usuarioLabel }}</strong> {{ nomeUsuario() }}</p>
+<section class="dashboard" aria-labelledby="gerencial-title">
+  <h2 id="gerencial-title" class="sr-only">{{ titulo }}</h2>
+
+  <div class="stats-grid" aria-label="Indicadores principais">
+    <article class="metric-card">
+      <div class="metric-head">
+        <p>Clientes</p>
+        <img src="/images/icons/gerencial/clientes.svg" alt="" aria-hidden="true" />
+      </div>
+      <strong>2</strong>
+    </article>
+    <article class="metric-card">
+      <div class="metric-head">
+        <p>Usuarios</p>
+        <img src="/images/icons/gerencial/usuarios.svg" alt="" aria-hidden="true" />
+      </div>
+      <strong>4</strong>
+    </article>
+    <article class="metric-card">
+      <div class="metric-head">
+        <p>Lavanderias</p>
+        <img src="/images/icons/gerencial/lavanderias.svg" alt="" aria-hidden="true" />
+      </div>
+      <strong>3</strong>
+    </article>
+    <article class="metric-card">
+      <div class="metric-head">
+        <p>Maquinas</p>
+        <img src="/images/icons/gerencial/maquinas.svg" alt="" aria-hidden="true" />
+      </div>
+      <strong>2</strong>
+    </article>
+  </div>
+
+  <div class="panels-grid">
+    <article class="status-panel">
+      <h3>Maquinas por status</h3>
+      <ul>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/ativo.svg" alt="" aria-hidden="true" />
+            Ativo
+          </span>
+          <strong>2</strong>
+        </li>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/em-uso.svg" alt="" aria-hidden="true" />
+            Em uso
+          </span>
+          <strong>0</strong>
+        </li>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/manutencao.svg" alt="" aria-hidden="true" />
+            Manutencao
+          </span>
+          <strong>0</strong>
+        </li>
+      </ul>
+    </article>
+
+    <article class="status-panel">
+      <h3>Lavanderias e tipos de maquina</h3>
+      <ul>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/abertas.svg" alt="" aria-hidden="true" />
+            Lavanderias abertas
+          </span>
+          <strong>3</strong>
+        </li>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/fechadas.svg" alt="" aria-hidden="true" />
+            Lavanderias fechadas
+          </span>
+          <strong>0</strong>
+        </li>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/lavadoras.svg" alt="" aria-hidden="true" />
+            Lavadoras
+          </span>
+          <strong>1</strong>
+        </li>
+        <li>
+          <span class="status-label">
+            <img src="/images/icons/gerencial/secadoras.svg" alt="" aria-hidden="true" />
+            Secadoras
+          </span>
+          <strong>1</strong>
+        </li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="session-text"><strong>{{ usuarioLabel }}</strong> {{ nomeUsuario() }}</p>
 </section>
