@@ -15,6 +15,7 @@ import {
   validarEmailCliente
 } from '../../../../core/validators/cliente.validators';
 import { AuthSessionService } from '../../../../core/services/auth-session.service';
+import { ToastMensagemService } from '../../../../core/services/toast.service';
 import { TipoLogin } from '../../models/login.model';
 import { LoginService } from '../../services/login.service';
 
@@ -54,6 +55,7 @@ export class LoginComponent {
   private readonly router = inject(Router);
   private readonly loginService = inject(LoginService);
   private readonly authSessionService = inject(AuthSessionService);
+  private readonly toastMensagemService = inject(ToastMensagemService);
 
   protected readonly isSubmitting = signal(false);
   protected readonly apiErrors = signal<string[]>([]);
@@ -70,6 +72,7 @@ export class LoginComponent {
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.toastMensagemService.alerta(StringResources.LoginFormularioInvalido);
       return;
     }
 
@@ -86,6 +89,7 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           this.authSessionService.iniciarSessao(response);
+          this.toastMensagemService.sucesso(StringResources.LoginSucesso);
           this.isSubmitting.set(false);
           this.router.navigateByUrl(this.context.rotaSucesso);
         },
@@ -95,6 +99,7 @@ export class LoginComponent {
             : [StringResources.LoginErroComunicacaoBackend];
 
           this.apiErrors.set(messages);
+          this.toastMensagemService.erro(messages[0] ?? StringResources.LoginErroComunicacaoBackend);
           this.isSubmitting.set(false);
         }
       });

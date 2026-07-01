@@ -12,6 +12,7 @@ import {
   senhaClienteValidator,
   telefoneValidator
 } from '../../../../core/validators/cliente.validators';
+import { ToastMensagemService } from '../../../../core/services/toast.service';
 import { CadastroClienteService } from '../../services/cadastro-cliente.service';
 
 type CadastroClienteForm = {
@@ -33,6 +34,7 @@ type CadastroClienteForm = {
 export class CadastroClienteComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly cadastroClienteService = inject(CadastroClienteService);
+  private readonly toastMensagemService = inject(ToastMensagemService);
 
   protected readonly isSubmitting = signal(false);
   protected readonly apiErrors = signal<string[]>([]);
@@ -109,6 +111,7 @@ export class CadastroClienteComponent {
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.toastMensagemService.alerta(StringResources.ClienteCadastroFormularioInvalido);
       return;
     }
 
@@ -127,9 +130,10 @@ export class CadastroClienteComponent {
       })
       .subscribe({
         next: (response) => {
-          this.successMessage.set(
-            StringResources.ClienteCadastroSucesso.replace('{0}', String(response.clienteId))
-          );
+          const mensagemSucesso = StringResources.ClienteCadastroSucesso.replace('{0}', String(response.clienteId));
+
+          this.successMessage.set(mensagemSucesso);
+          this.toastMensagemService.sucesso(mensagemSucesso);
           this.form.reset();
           this.isSubmitting.set(false);
         },
@@ -139,6 +143,7 @@ export class CadastroClienteComponent {
             : [StringResources.ClienteErroComunicacaoBackend];
 
           this.apiErrors.set(messages);
+          this.toastMensagemService.erro(messages[0] ?? StringResources.ClienteErroComunicacaoBackend);
           this.isSubmitting.set(false);
         }
       });

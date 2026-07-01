@@ -1,0 +1,32 @@
+.feedback {
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+
+  &.success {
+    background: #ecfdf3;
+    border-color: #abeec7;
+    color: #146c43;
+  }
+
+  &.alert {
+    background: #fff9e8;
+    border-color: #fde68a;
+    color: #9a6700;
+  }
+
+  &.error {
+    background: #fff1f2;
+    border-color: #fecdd3;
+    color: #b42318;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0.45rem 0 0;
+    padding-left: 1.15rem;
+  }
+}

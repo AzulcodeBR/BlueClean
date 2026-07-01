@@ -24,7 +24,10 @@ export const StringResources = {
   LoginIdentificadorObrigatorio: 'Informe E-mail ou CPF/CNPJ.',
   LoginIdentificadorInvalido: 'Informe um E-mail ou CPF/CNPJ válido.',
   LoginSenhaObrigatoria: 'A senha é obrigatória.',
+  LoginFormularioInvalido: 'Revise os campos obrigatórios para continuar.',
+  LoginSucesso: 'Login realizado com sucesso.',
   LoginErroComunicacaoBackend: 'Erro ao comunicar com a API de backend durante o login.',
+  ClienteCadastroFormularioInvalido: 'Revise os campos do cadastro antes de enviar.',
   ModuloClienteTitulo: 'Módulo Cliente',
   GerencialTitulo: 'Gerencial',
   UsuarioAutenticadoLabel: 'Usuário autenticado:'

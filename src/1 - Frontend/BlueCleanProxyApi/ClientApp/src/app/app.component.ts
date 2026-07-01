@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 
 import { AuthSessionService } from './core/services/auth-session.service';
 import { LoadingService } from './core/services/loading.service';
+import { ToastMensagemService } from './core/services/toast.service';
 import { TipoLogin } from './features/login/models/login.model';
 
 interface SidebarItem {
@@ -29,10 +30,12 @@ interface PageMeta {
 export class AppComponent {
   private readonly router = inject(Router);
   private readonly loadingService = inject(LoadingService);
+  private readonly toastMensagemService = inject(ToastMensagemService);
   private readonly authSessionService = inject(AuthSessionService);
   private readonly currentUrl = signal(this.router.url);
 
   protected readonly isLoading = this.loadingService.isLoading;
+  protected readonly toastMensagens = this.toastMensagemService.mensagens;
   protected readonly session = this.authSessionService.session;
   protected readonly nomeUsuario = computed(() => this.authSessionService.nomeUsuario() ?? 'Usuario');
   protected readonly tipoUsuario = computed(() =>
@@ -62,6 +65,10 @@ export class AppComponent {
     }
 
     this.router.navigateByUrl('/login/cliente');
+  }
+
+  protected removerToast(id: number): void {
+    this.toastMensagemService.remover(id);
   }
 
   private mustShowPrivateShell(url: string): boolean {

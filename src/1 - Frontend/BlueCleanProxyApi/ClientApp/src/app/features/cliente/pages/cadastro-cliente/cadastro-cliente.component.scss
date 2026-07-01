@@ -141,32 +141,6 @@ button[type='submit'] {
   }
 }
 
-.feedback {
-  border-radius: 0.75rem;
-  padding: 0.75rem 0.85rem;
-
-  &.success {
-    background: #ecfdf3;
-    border: 1px solid #abeec7;
-    color: #146c43;
-  }
-
-  &.error {
-    background: #fff1f2;
-    border: 1px solid #fecdd3;
-    color: #b42318;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  ul {
-    margin: 0.45rem 0 0;
-    padding-left: 1.15rem;
-  }
-}
-
 .field-error {
   color: #b91c1c;
   font-size: 0.84rem;

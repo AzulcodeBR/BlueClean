@@ -13,6 +13,23 @@
   </output>
 }
 
+@if (toastMensagens().length) {
+  <section class="toast-container" aria-label="Notificacoes">
+    @for (toast of toastMensagens(); track toast.id) {
+      <output
+        class="feedback"
+        [class.success]="toast.tipo === 'sucesso'"
+        [class.alert]="toast.tipo === 'alerta'"
+        [class.error]="toast.tipo === 'erro'"
+        aria-live="polite"
+      >
+        <p>{{ toast.texto }}</p>
+        <button type="button" (click)="removerToast(toast.id)" aria-label="Fechar notificacao">×</button>
+      </output>
+    }
+  </section>
+}
+
 @if (showPrivateShell()) {
   <div class="portal-shell">
     <aside class="portal-sidebar" aria-label="Menu lateral">
