@@ -61,27 +61,15 @@ h1 {
   margin: 0;
 }
 
-.type-tabs {
-  background: #e9edf4;
-  border: 1px solid #d7dee9;
-  border-radius: 0.8rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 0.2rem;
+.context-link {
+  color: #4c5f79;
+  margin: 0;
 
   a {
-    border-radius: 0.65rem;
-    color: #4c5f79;
+    color: #2f65da;
     font-weight: 600;
-    padding: 0.55rem 0.7rem;
-    text-align: center;
+    margin-left: 0.4rem;
     text-decoration: none;
-
-    &.is-active {
-      background: #ffffff;
-      box-shadow: var(--shadow-sm);
-      color: #0a1a3f;
-    }
   }
 }
 

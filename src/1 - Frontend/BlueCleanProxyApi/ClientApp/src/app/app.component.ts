@@ -4,10 +4,10 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 
-import { AuthSessionService } from './core/services/auth-session.service';
+import { SessionService } from './core/services/session.service';
 import { LoadingService } from './core/services/loading.service';
-import { ToastMensagemService } from './core/services/toast.service';
-import { TipoLogin } from './features/login/models/login.model';
+import { ToastService } from './core/services/toast.service';
+import { TipoLogin } from './core/models/login.model';
 
 interface SidebarItem {
   label: string;
@@ -30,19 +30,19 @@ interface PageMeta {
 export class AppComponent {
   private readonly router = inject(Router);
   private readonly loadingService = inject(LoadingService);
-  private readonly toastMensagemService = inject(ToastMensagemService);
-  private readonly authSessionService = inject(AuthSessionService);
-  private readonly currentUrl = signal(this.router.url);
+  private readonly toastService = inject(ToastService);
+  private readonly sessionService = inject(SessionService);
+  private readonly urlAtual = signal(this.router.url);
 
   protected readonly isLoading = this.loadingService.isLoading;
-  protected readonly toastMensagens = this.toastMensagemService.mensagens;
-  protected readonly session = this.authSessionService.session;
-  protected readonly nomeUsuario = computed(() => this.authSessionService.nomeUsuario() ?? 'Usuario');
+  protected readonly toastMensagens = this.toastService.mensagens;
+  protected readonly sessaoAutenticada = this.sessionService.sessaoAutenticada;
+  protected readonly nomeUsuario = computed(() => this.sessionService.nomeUsuario() ?? 'Usuario');
   protected readonly tipoUsuario = computed(() =>
-    this.session()?.tipoLogin === TipoLogin.Gerencial ? 'Administrador' : 'Cliente'
+    this.sessaoAutenticada()?.tipoLogin === TipoLogin.Gerencial ? 'Administrador' : 'Cliente'
   );
-  protected readonly showPrivateShell = computed(() => this.mustShowPrivateShell(this.currentUrl()));
-  protected readonly pageMeta = computed(() => this.getPageMeta(this.currentUrl()));
+  protected readonly showPrivateShell = computed(() => this.mustShowPrivateShell(this.urlAtual()));
+  protected readonly pageMeta = computed(() => this.getPageMeta(this.urlAtual()));
   protected readonly sidebarItems = computed<SidebarItem[]>(() => this.getSidebarItems());
 
   constructor() {
@@ -51,43 +51,43 @@ export class AppComponent {
         filter((event): event is NavigationEnd => event instanceof NavigationEnd),
         takeUntilDestroyed()
       )
-      .subscribe((event) => this.currentUrl.set(event.urlAfterRedirects));
+      .subscribe((event) => this.urlAtual.set(event.urlAfterRedirects));
   }
 
   protected logout(): void {
-    const tipoAtual = this.session()?.tipoLogin;
+    const tipoAtual = this.sessaoAutenticada()?.tipoLogin;
 
-    this.authSessionService.encerrarSessao();
+    this.sessionService.encerrarSessao();
 
     if (tipoAtual === TipoLogin.Gerencial) {
-      this.router.navigateByUrl('/login/gerencial');
+      this.router.navigateByUrl('/gerencial/login');
       return;
     }
 
-    this.router.navigateByUrl('/login/cliente');
+    this.router.navigateByUrl('/cliente/login');
   }
 
   protected removerToast(id: number): void {
-    this.toastMensagemService.remover(id);
+    this.toastService.remover(id);
   }
 
   private mustShowPrivateShell(url: string): boolean {
-    if (!this.session()) {
+    if (!this.sessaoAutenticada()) {
       return false;
     }
 
-    return !url.startsWith('/login') && !url.startsWith('/register');
+    return !url.endsWith('/login') && !url.startsWith('/cliente/cadastro');
   }
 
   private getSidebarItems(): SidebarItem[] {
     const baseItems: SidebarItem[] = [
       {
         label: 'Dashboard',
-        path: this.session()?.tipoLogin === TipoLogin.Gerencial ? '/gerencial' : '/cliente'
+        path: this.sessaoAutenticada()?.tipoLogin === TipoLogin.Gerencial ? '/gerencial' : '/cliente'
       }
     ];
 
-    if (this.session()?.tipoLogin === TipoLogin.Gerencial) {
+    if (this.sessaoAutenticada()?.tipoLogin === TipoLogin.Gerencial) {
       baseItems.push({
         label: 'Clientes',
         path: '/cadastroCliente'
@@ -96,7 +96,10 @@ export class AppComponent {
 
     baseItems.push({
       label: 'Voltar ao login',
-      path: this.session()?.tipoLogin === TipoLogin.Gerencial ? '/login/gerencial' : '/login/cliente'
+      path:
+        this.sessaoAutenticada()?.tipoLogin === TipoLogin.Gerencial
+          ? '/gerencial/login'
+          : '/cliente/login'
     });
 
     return baseItems;
@@ -106,8 +109,8 @@ export class AppComponent {
     if (url.startsWith('/gerencial')) {
       return {
         kicker: 'Dashboard',
-        title: `Ola, ${this.primeiroNome(this.nomeUsuario())}`,
-        subtitle: 'Visao geral da sua operacao.'
+        title: `Olá, ${this.primeiroNome(this.nomeUsuario())}`,
+        subtitle: 'Visao geral da sua operação.'
       };
     }
 
@@ -119,7 +122,7 @@ export class AppComponent {
       };
     }
 
-    if (url.startsWith('/cadastroCliente') || url.startsWith('/register')) {
+    if (url.startsWith('/cadastroCliente') || url.startsWith('/cliente/cadastro')) {
       return {
         kicker: 'Cadastros',
         title: 'Novo cliente',

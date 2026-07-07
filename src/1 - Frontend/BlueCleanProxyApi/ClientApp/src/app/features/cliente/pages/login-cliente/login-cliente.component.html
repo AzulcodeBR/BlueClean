@@ -1,6 +1,6 @@
 <section class="login-layout" aria-labelledby="login-title">
   <div class="login-panel">
-    <a class="brand" routerLink="/login/gerencial" aria-label="Ir para login gerencial">
+    <a class="brand" routerLink="/gerencial/login" aria-label="Ir para login gerencial">
       <img src="/images/logos/LogoColorido.png" alt="Logo BlueClean" />
       <span>
         <strong>BlueClean | Lavanderia SaaS</strong>
@@ -8,13 +8,8 @@
       </span>
     </a>
 
-    <h1 id="login-title">Bem-vindo de volta</h1>
-    <p class="subtitle">Entre na sua conta para continuar</p>
-
-    <nav class="type-tabs" aria-label="Tipo de login">
-      <a [routerLink]="'/login/gerencial'" routerLinkActive="is-active">Administrador</a>
-      <a [routerLink]="'/login/cliente'" routerLinkActive="is-active">Cliente</a>
-    </nav>
+    <h1 id="login-title">Login Cliente</h1>
+    <p class="subtitle">Acesso para clientes da plataforma.</p>
 
     @if (apiErrors().length > 0) {
       <div class="feedback error" role="alert" aria-live="assertive">
@@ -65,15 +60,15 @@
 
     <p class="register-text">
       Nao tem conta?
-      <a routerLink="/register">Cadastre-se</a>
+      <a routerLink="/cliente/cadastro">Cadastre-se</a>
     </p>
   </div>
 
   <aside class="login-hero" aria-hidden="true">
     <img src="/images/banners/BannerHome.png" alt="" />
     <div>
-      <h2>Controle total da sua operacao</h2>
-      <p>Gerencie clientes, lavanderias e maquinas em um so lugar. Acompanhe status em tempo real.</p>
+      <h2>Lavanderia na palma da mão</h2>
+      <p>Cadastre-se, localize lavanderias abertas, confira a disponibilidade das máquinas, consulte os valores dos ciclos, aproveite promoções e acompanhe seu histórico de uso, tudo em um único lugar.</p>
     </div>
   </aside>
 </section>

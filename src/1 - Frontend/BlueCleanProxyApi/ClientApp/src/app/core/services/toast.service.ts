@@ -9,7 +9,7 @@ export interface ToastMensagem {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ToastMensagemService {
+export class ToastService {
   private readonly duracaoPadraoMs = 4000;
   private readonly timeouts = new Map<number, number>();
   private proximoId = 1;

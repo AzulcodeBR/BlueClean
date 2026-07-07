@@ -12,7 +12,7 @@ import {
   senhaClienteValidator,
   telefoneValidator
 } from '../../../../core/validators/cliente.validators';
-import { ToastMensagemService } from '../../../../core/services/toast.service';
+import { ToastService } from '../../../../core/services/toast.service';
 import { CadastroClienteService } from '../../services/cadastro-cliente.service';
 
 type CadastroClienteForm = {
@@ -34,12 +34,11 @@ type CadastroClienteForm = {
 export class CadastroClienteComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly cadastroClienteService = inject(CadastroClienteService);
-  private readonly toastMensagemService = inject(ToastMensagemService);
+  private readonly toastService = inject(ToastService);
 
   protected readonly isSubmitting = signal(false);
   protected readonly apiErrors = signal<string[]>([]);
   protected readonly successMessage = signal<string | null>(null);
-  protected readonly tipoConta = signal<'cliente' | 'administrador'>('cliente');
 
   protected readonly form = this.formBuilder.nonNullable.group(
     {
@@ -86,10 +85,6 @@ export class CadastroClienteComponent {
     return (control.touched || control.dirty) && this.form.hasError('senhasDiferentes');
   }
 
-  protected setTipoConta(tipo: 'cliente' | 'administrador'): void {
-    this.tipoConta.set(tipo);
-  }
-
   private validarSenhasIguais() {
     return () => {
       const senha = this.form?.controls.senha.value ?? '';
@@ -111,7 +106,7 @@ export class CadastroClienteComponent {
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.toastMensagemService.alerta(StringResources.ClienteCadastroFormularioInvalido);
+      this.toastService.alerta(StringResources.ClienteCadastroFormularioInvalido);
       return;
     }
 
@@ -133,7 +128,7 @@ export class CadastroClienteComponent {
           const mensagemSucesso = StringResources.ClienteCadastroSucesso.replace('{0}', String(response.clienteId));
 
           this.successMessage.set(mensagemSucesso);
-          this.toastMensagemService.sucesso(mensagemSucesso);
+          this.toastService.sucesso(mensagemSucesso);
           this.form.reset();
           this.isSubmitting.set(false);
         },
@@ -143,7 +138,7 @@ export class CadastroClienteComponent {
             : [StringResources.ClienteErroComunicacaoBackend];
 
           this.apiErrors.set(messages);
-          this.toastMensagemService.erro(messages[0] ?? StringResources.ClienteErroComunicacaoBackend);
+          this.toastService.erro(messages[0] ?? StringResources.ClienteErroComunicacaoBackend);
           this.isSubmitting.set(false);
         }
       });

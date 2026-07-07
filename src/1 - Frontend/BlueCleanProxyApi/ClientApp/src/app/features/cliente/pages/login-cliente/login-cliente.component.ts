@@ -8,23 +8,17 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { StringResources } from '../../../../../core/constants/string-resources';
+import { Router, RouterLink } from '@angular/router';
+
+import { StringResources } from '../../../../core/constants/string-resources';
+import { SessionService } from '../../../../core/services/session.service';
+import { ToastService } from '../../../../core/services/toast.service';
 import {
   validarCpfOuCnpj,
   validarEmailCliente
-} from '../../../../../core/validators/cliente.validators';
-import { SessionService } from '../../../../../core/services/session.service';
-import { ToastService } from '../../../../../core/services/toast.service';
-import { TipoLogin } from '../../models/login.model';
-import { LoginService } from '../../services/login.service';
-
-interface LoginContext {
-  tipoLogin: TipoLogin;
-  titulo: string;
-  subtitulo: string;
-  rotaSucesso: string;
-}
+} from '../../../../core/validators/cliente.validators';
+import { TipoLogin } from '../../../../core/models/login.model';
+import { LoginService } from '../../../../core/services/login.service';
 
 function identificadorValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -43,24 +37,23 @@ function identificadorValidator(): ValidatorFn {
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-cliente',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  imports: [ReactiveFormsModule, RouterLink],
+  templateUrl: './login-cliente.component.html',
+  styleUrls: ['./login-cliente.component.scss']
 })
-export class LoginComponent {
+export class LoginClienteComponent {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly loginService = inject(LoginService);
-  private readonly authSessionService = inject(SessionService);
+  private readonly sessionService = inject(SessionService);
   private readonly toastService = inject(ToastService);
 
+  protected readonly tipoLogin = TipoLogin.Cliente;
   protected readonly isSubmitting = signal(false);
   protected readonly apiErrors = signal<string[]>([]);
-
-  private readonly context = this.getContext();
 
   protected readonly form = this.formBuilder.nonNullable.group({
     identificador: ['', [identificadorValidator()]],
@@ -84,14 +77,14 @@ export class LoginComponent {
       .autenticar({
         identificador: payload.identificador.trim(),
         senha: payload.senha,
-        tipoLogin: this.context.tipoLogin
+        tipoLogin: this.tipoLogin
       })
       .subscribe({
         next: (response) => {
-          this.authSessionService.criarSessao(response);
+          this.sessionService.criarSessao(response);
           this.toastService.sucesso(StringResources.LoginSucesso);
           this.isSubmitting.set(false);
-          this.router.navigateByUrl(this.context.rotaSucesso);
+          this.router.navigateByUrl('/cliente');
         },
         error: (error: HttpErrorResponse) => {
           const messages = Array.isArray(error.error)
@@ -125,26 +118,5 @@ export class LoginComponent {
     }
 
     return null;
-  }
-
-  private getContext(): LoginContext {
-    const tipoInformado = Number(this.route.snapshot.data['tipoLogin']);
-    const tipo = tipoInformado === TipoLogin.Gerencial ? TipoLogin.Gerencial : TipoLogin.Cliente;
-
-    if (tipo === TipoLogin.Gerencial) {
-      return {
-        tipoLogin: TipoLogin.Gerencial,
-        titulo: 'Login Gerencial',
-        subtitulo: 'Acesso para a área administrativa.',
-        rotaSucesso: '/gerencial'
-      };
-    }
-
-    return {
-      tipoLogin: TipoLogin.Cliente,
-      titulo: 'Login Cliente',
-      subtitulo: 'Acesso para clientes da plataforma.',
-      rotaSucesso: '/cliente'
-    };
   }
 }

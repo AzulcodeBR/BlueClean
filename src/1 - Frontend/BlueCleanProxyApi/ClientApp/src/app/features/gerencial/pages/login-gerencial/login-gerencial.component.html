@@ -1,0 +1,70 @@
+<section class="login-layout" aria-labelledby="login-title">
+  <div class="login-panel">
+    <div class="brand" aria-label="Marca BlueClean">
+      <img src="/images/logos/LogoColorido.png" alt="Logo BlueClean" />
+      <span>
+        <strong>BlueClean | Lavanderia SaaS</strong>
+        <small>Gestao moderna de lavanderias</small>
+      </span>
+    </div>
+
+    <h1 id="login-title">Login Gerencial</h1>
+    <p class="subtitle">Acesso para a area administrativa.</p>
+
+    @if (apiErrors().length > 0) {
+      <div class="feedback error" role="alert" aria-live="assertive">
+        <p>Corrija os itens abaixo:</p>
+        <ul>
+          @for (message of apiErrors(); track message) {
+            <li>{{ message }}</li>
+          }
+        </ul>
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field">
+        <label for="identificador">E-mail</label>
+        <input
+          id="identificador"
+          type="text"
+          formControlName="identificador"
+          autocomplete="username"
+          placeholder="voce@email.com"
+        />
+
+        @if (fieldError('identificador'); as error) {
+          <p class="field-error" role="alert">{{ error }}</p>
+        }
+      </div>
+
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          autocomplete="current-password"
+          placeholder="••••••••"
+        />
+
+        @if (fieldError('senha'); as error) {
+          <p class="field-error" role="alert">{{ error }}</p>
+        }
+      </div>
+
+      <button type="submit" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+
+  </div>
+
+  <aside class="login-hero" aria-hidden="true">
+    <img src="/images/banners/BannerHome.png" alt="" />
+    <div>
+      <h2>Controle total da sua operação</h2>
+      <p>Gerencie clientes, lavanderias e maquinas em um só lugar. Acompanhe status em tempo real.</p>
+    </div>
+  </aside>
+</section>

@@ -1,29 +1,43 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
-import { TipoLogin } from './features/login/models/login.model';
+import { TipoLogin } from './core/models/login.model';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login/gerencial',
+    redirectTo: 'gerencial/login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    redirectTo: 'login/cliente',
+    redirectTo: 'cliente/login',
     pathMatch: 'full'
   },
   {
-    path: 'login/cliente',
+    path: 'cliente/login',
     data: { tipoLogin: TipoLogin.Cliente },
     loadComponent: () =>
-      import('./features/login/pages/login/login.component').then((m) => m.LoginComponent)
+      import('./features/cliente/pages/login-cliente/login-cliente.component').then(
+        (m) => m.LoginClienteComponent
+      )
+  },
+  {
+    path: 'gerencial/login',
+    data: { tipoLogin: TipoLogin.Gerencial },
+    loadComponent: () =>
+      import('./features/gerencial/pages/login-gerencial/login-gerencial.component').then(
+        (m) => m.LoginGerencialComponent
+      )
+  },
+  {
+    path: 'login/cliente',
+    redirectTo: 'cliente/login',
+    pathMatch: 'full'
   },
   {
     path: 'login/gerencial',
-    data: { tipoLogin: TipoLogin.Gerencial },
-    loadComponent: () =>
-      import('./features/login/pages/login/login.component').then((m) => m.LoginComponent)
+    redirectTo: 'gerencial/login',
+    pathMatch: 'full'
   },
   {
     path: 'cliente',
@@ -44,11 +58,16 @@ export const routes: Routes = [
       )
   },
   {
-    path: 'register',
+    path: 'cliente/cadastro',
     loadComponent: () =>
       import('./features/cliente/pages/cadastro-cliente/cadastro-cliente.component').then(
         (m) => m.CadastroClienteComponent
       )
+  },
+  {
+    path: 'register',
+    redirectTo: 'cliente/cadastro',
+    pathMatch: 'full'
   },
   {
     path: 'cadastroCliente',

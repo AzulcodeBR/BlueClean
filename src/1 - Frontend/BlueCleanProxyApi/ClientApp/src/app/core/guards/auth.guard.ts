@@ -1,23 +1,23 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { TipoLogin } from '../../features/login/models/login.model';
-import { AuthSessionService } from '../services/auth-session.service';
+import { TipoLogin } from '../models/login.model';
+import { SessionService } from '../services/session.service';
 
 export const authGuard: CanActivateFn = (route) => {
-  const authSessionService = inject(AuthSessionService);
+  const sessionService = inject(SessionService);
   const router = inject(Router);
 
   const tipoInformado = Number(route.data['tipoLogin']);
   const tipoLogin =
     tipoInformado === TipoLogin.Gerencial ? TipoLogin.Gerencial : TipoLogin.Cliente;
 
-  if (authSessionService.isAuthenticatedFor(tipoLogin)) {
+  if (sessionService.verificarSessaoTipoLogin(tipoLogin)) {
     return true;
   }
 
   if (tipoLogin === TipoLogin.Gerencial) {
-    return router.createUrlTree(['/login/gerencial']);
+    return router.createUrlTree(['/gerencial/login']);
   }
 
-  return router.createUrlTree(['/login/cliente']);
+  return router.createUrlTree(['/cliente/login']);
 };

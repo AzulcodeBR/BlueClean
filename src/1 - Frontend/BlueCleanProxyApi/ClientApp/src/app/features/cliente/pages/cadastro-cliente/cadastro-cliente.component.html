@@ -1,6 +1,6 @@
 <section class="register-page" aria-labelledby="cliente-title">
   <div class="register-card">
-    <a class="brand" routerLink="/login/gerencial" aria-label="Voltar para login">
+    <a class="brand" routerLink="/gerencial/login" aria-label="Voltar para login">
       <img src="/images/logos/LogoColorido.png" alt="Logo BlueClean" />
       <span>
         <strong>BlueClean | Lavanderia SaaS</strong>
@@ -9,16 +9,7 @@
     </a>
 
     <h1 id="cliente-title">Criar uma conta</h1>
-    <p class="subtitle">Escolha o tipo de conta e preencha os dados</p>
-
-    <div class="type-tabs" role="tablist" aria-label="Tipo de conta">
-      <button type="button" role="tab" [attr.aria-selected]="tipoConta() === 'cliente'" [class.is-active]="tipoConta() === 'cliente'" (click)="setTipoConta('cliente')">
-        Cliente
-      </button>
-      <button type="button" role="tab" [attr.aria-selected]="tipoConta() === 'administrador'" [class.is-active]="tipoConta() === 'administrador'" (click)="setTipoConta('administrador')">
-        Administrador
-      </button>
-    </div>
+    <p class="subtitle">Preencha os dados para criar sua conta de cliente</p>
 
     @if (successMessage(); as message) {
       <output class="feedback success">{{ message }}</output>
@@ -120,7 +111,7 @@
 
     <p class="login-link">
       Ja tem conta?
-      <a routerLink="/login/gerencial">Entrar</a>
+      <a routerLink="/cliente/login">Entrar</a>
     </p>
   </div>
 </section>

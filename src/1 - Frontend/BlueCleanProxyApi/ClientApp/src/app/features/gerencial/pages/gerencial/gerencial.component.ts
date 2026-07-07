@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { StringResources } from '../../../../core/constants/string-resources';
-import { AuthSessionService } from '../../../../core/services/auth-session.service';
+import { SessionService } from '../../../../core/services/session.service';
 
 @Component({
   selector: 'app-gerencial',
@@ -9,9 +9,9 @@ import { AuthSessionService } from '../../../../core/services/auth-session.servi
   styleUrls: ['./gerencial.component.scss']
 })
 export class GerencialComponent {
-  private readonly authSessionService = inject(AuthSessionService);
+  private readonly sessionService = inject(SessionService);
 
   protected readonly titulo = StringResources.GerencialTitulo;
   protected readonly usuarioLabel = StringResources.UsuarioAutenticadoLabel;
-  protected readonly nomeUsuario = computed(() => this.authSessionService.nomeUsuario() ?? '-');
+  protected readonly nomeUsuario = computed(() => this.sessionService.nomeUsuario() ?? '-');
 }
